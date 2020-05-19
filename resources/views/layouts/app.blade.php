@@ -12,9 +12,6 @@
     <link rel="shortcut icon" href="{{ asset('paper/img/favicon.png') }}" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('paper/img/apple-icon.png') }}">
 
-    <!-- Caronical -->
-    <link rel="canonical" href="https://www.creative-tim.com/product/paper-dashboard-laravel" />
-
     <!-- Social Tags -->
     <meta name="keywords" content="covid, corona, bootstrap 4 dashboard, laravel">
     <meta name="description" content="Covid-19 Tracker app by group 8">
@@ -54,7 +51,6 @@
     <script src="{{ asset('paper/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('paper/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('paper/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
-    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
     <script src="{{ asset('paper/js/plugins/chartjs.min.js') }}"></script>
     <script src="{{ asset('paper/js/plugins/bootstrap-notify.js') }}"></script>
     <script src="{{ asset('paper/js/paper-dashboard.min.js?v=2.0.0') }}" type="text/javascript"></script>
