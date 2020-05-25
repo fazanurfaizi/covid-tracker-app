@@ -1,32 +1,83 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+import $ from "jquery";
+import "select2";
+import "bootstrap";
+import swal from "sweetalert";
 
-require('./bootstrap');
+$(".select2").select2();
+$(".select2-tags").select2({ tags: true });
 
-window.Vue = require('vue');
+var laravel = {
+    initialize: function () {
+        this.methodLinks = $("a[data-method]");
+        this.token = $("a[data-token]");
+        this.registerEvents();
+    },
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+    registerEvents: function () {
+        this.methodLinks.on("click", this.handleMethod);
+    },
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+    handleMethod: function (e) {
+        var link = $(this);
+        var method = link.data("method").toUpperCase();
+        var form;
+        var category = link.data("category");
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+        if ($.inArray(method, ["PUT", "DELETE"]) === -1) {
+            return;
+        }
 
-// /**
-//  * Next, we will create a fresh Vue application instance and attach it to
-//  * the page. Then, you may begin adding components to this application
-//  * or customize the JavaScript scaffolding to fit your unique needs.
-//  */
+        form = laravel.createForm(link);
+        laravel.verifyConfirm(form, category);
 
-// const app = new Vue({
-//     el: '#app',
-// });
+        e.preventDefault();
+    },
+
+    verifyConfirm: function (form, name) {
+        swal({
+            title: "Are you sure?",
+            text: `You will delete this ${name}`,
+            icon: "warning",
+            buttons: [
+                'No, Cancel it!',
+                'Yes, I am sure!'
+            ],
+            dangerMode: true
+        }).then(function(confirm) {
+            if(confirm) {
+                swal({
+                    title: "Delete Successfully",
+                    text: `You are successfully deleted this ${name}!`,
+                    icon: "success",
+                }).then(function () {
+                    form.submit();
+                });
+            } else {
+                swal("Canceled", `You canceled to delete this ${name}`, "error");
+            }
+        })
+    },
+
+    createForm: function (link) {
+        var form = $("<form>", {
+            method: "POST",
+            action: link.attr("href"),
+        });
+
+        var token = $("<input>", {
+            type: "hidden",
+            name: "_token",
+            value: link.data("token"),
+        });
+
+        var hiddenInput = $("<input>", {
+            name: "_method",
+            type: "hidden",
+            value: link.data("method"),
+        });
+
+        return form.append(token, hiddenInput).appendTo("body");
+    },
+};
+
+laravel.initialize();

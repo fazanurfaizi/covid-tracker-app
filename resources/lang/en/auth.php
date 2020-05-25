@@ -15,5 +15,7 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'unauth' => 'Unauthenticated. You are not an admin.',
+    'admin' => "you're not admin, you don't have the permission.",
 
 ];

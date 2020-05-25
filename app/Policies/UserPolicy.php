@@ -21,4 +21,18 @@ class UserPolicy
         return $user->id === $model->id;
     }
 
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
+     * @return mixed
+     */
+    public function destroy(User $user, User $model) {
+        if($user->id !== $model->id) {
+            return __('admin.delete.failed');
+        }
+        return true;
+    }
+
 }

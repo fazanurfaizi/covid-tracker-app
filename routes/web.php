@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+    return view('app.pages.home');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/profile', 'ProfileController@edit')->name('profile.edit');
+    Route::put('/profile/update', 'ProfileController@update')->name('profile.update');
+    Route::put('/profile/password', 'ProfileController@password')->name('profile.password');
+});

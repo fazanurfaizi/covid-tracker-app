@@ -9,7 +9,7 @@ use App\Traits\Likeable;
 use Carbon\Carbon;
 use App\Scopes\PostedScope;
 
-class post extends Model
+class Post extends Model
 {
 
     use Likeable;
@@ -79,6 +79,10 @@ class post extends Model
                 ->latest();
     }
 
+    public function scopeAdmin(Builder $query) {
+        return $query->where('is_admin', true);
+    }
+
     public function getPublishedAttribute() {
         return ($this->is_published) ? 'Yes' : 'No';
     }
@@ -101,11 +105,13 @@ class post extends Model
         return $this->tags->pluck('name')->toArray();
     }
 
-    public function getImageAttribute() {
-        return asset('uploads/posts/' . $this->image);
+    public function getImageUrlAttribute() {
+        if($image) {
+            return asset('uploads/posts/' . $this->image);
+        }
     }
 
-    protected function createSlug($title, $id = 0)
+    public function createSlug($title, $id = 0)
     {
         $slug = str_slug($title);
         $allSlugs = $this->getRelatedSlugs($slug, $id);

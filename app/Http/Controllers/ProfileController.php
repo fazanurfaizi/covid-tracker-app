@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Hash;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ class ProfileController extends Controller
 {
 
     public function edit() {
-        return view('user.edit');
+        return view('app.user.edit');
     }
 
     public function update(ProfileRequest $request) {

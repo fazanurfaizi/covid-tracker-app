@@ -42,29 +42,27 @@
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href="{{ asset('paper/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('paper/css/paper-dashboard.css?v=2.0.0') }}" rel="stylesheet" />
 </head>
 <body>
 
-    <script src="{{ asset('paper/js/core/jquery.min.js') }}"></script>
-    <script src="{{ asset('paper/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('paper/js/core/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('paper/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
-    <script src="{{ asset('paper/js/plugins/chartjs.min.js') }}"></script>
-    <script src="{{ asset('paper/js/plugins/bootstrap-notify.js') }}"></script>
-    <script src="{{ asset('paper/js/paper-dashboard.min.js?v=2.0.0') }}" type="text/javascript"></script>
-    <script src="{{ asset('paper/demo/demo.js') }}"></script>
-
     <div id="app">
-        @include('shared.navbar')
+        @include('shared.app.navbar')
         <main class="py-4">
             @yield('content')
         </main>
-        @include('shared.footer')
+        @include('shared.app.footer')
     </div>
 
-    @stack('scripts')
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('plugins/popper/popper.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script src="{{ asset('plugins/chart-js/chartjs.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap-notify.js') }}"></script>
+    <script src="{{ asset('paper/js/paper-dashboard.min.js?v=2.0.0') }}" type="text/javascript"></script>
+    <script src="{{ asset('paper/demo/demo.js') }}"></script>
 
 </body>
 </html>
