@@ -24667,6 +24667,11 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(".select2").select2();
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(".select2-tags").select2({
   tags: true
 });
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#alert-success").fadeTo(2000, 300).slideUp(300, function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#alert-success").slideUp(300);
+  });
+});
 var laravel = {
   initialize: function initialize() {
     this.methodLinks = jquery__WEBPACK_IMPORTED_MODULE_0___default()("a[data-method]");
@@ -24680,14 +24685,14 @@ var laravel = {
     var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     var method = link.data("method").toUpperCase();
     var form;
-    var category = link.data("category");
+    var name = link.data("name");
 
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default.a.inArray(method, ["PUT", "DELETE"]) === -1) {
       return;
     }
 
     form = laravel.createForm(link);
-    laravel.verifyConfirm(form, category);
+    laravel.verifyConfirm(form, name);
     e.preventDefault();
   },
   verifyConfirm: function verifyConfirm(form, name) {
@@ -24702,7 +24707,8 @@ var laravel = {
         sweetalert__WEBPACK_IMPORTED_MODULE_3___default()({
           title: "Delete Successfully",
           text: "You are successfully deleted this ".concat(name, "!"),
-          icon: "success"
+          icon: "success",
+          timer: 2000
         }).then(function () {
           form.submit();
         });

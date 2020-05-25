@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::withCount('posts')->paginate(10);
+        $categories = Category::withCount('posts')->paginate(5);
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -79,6 +79,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect('admin/categories')->withSuccess(__('admin.delete.success'));
+        return redirect(url()->previous());
     }
 }

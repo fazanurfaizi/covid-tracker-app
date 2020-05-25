@@ -5,6 +5,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert-success">
+                            {{ $message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <div class="card-header">
                         <h5 class="card-title">Categories</h5>
                         <p class="card-category">
@@ -32,7 +40,7 @@
                                                 <a href="{{ url("admin/categories/{$category->id}/edit") }}" class="btn btn-xs- btn-info">
                                                     Edit
                                                 </a>
-                                                <a href="{{ url("admin/categories/{$category->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-category="{{ $category->name }}" class="btn btn-xs btn-danger">
+                                                <a href="{{ url("admin/categories/{$category->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $category->name }}" class="btn btn-xs btn-danger">
                                                     Delete
                                                 </a>
                                             </td>
@@ -45,8 +53,7 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        {!! $categories->links('vendor.pagination.custom') !!}
+                        {!! $categories->links() !!}
                     </div>
                 </div>
             </div>

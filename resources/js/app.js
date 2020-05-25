@@ -6,6 +6,12 @@ import swal from "sweetalert";
 $(".select2").select2();
 $(".select2-tags").select2({ tags: true });
 
+$(document).ready(function() {
+    $("#alert-success").fadeTo(2000, 300).slideUp(300, function() {
+        $("#alert-success").slideUp(300);
+    })
+})
+
 var laravel = {
     initialize: function () {
         this.methodLinks = $("a[data-method]");
@@ -21,14 +27,14 @@ var laravel = {
         var link = $(this);
         var method = link.data("method").toUpperCase();
         var form;
-        var category = link.data("category");
+        var name = link.data("name");
 
         if ($.inArray(method, ["PUT", "DELETE"]) === -1) {
             return;
         }
 
         form = laravel.createForm(link);
-        laravel.verifyConfirm(form, category);
+        laravel.verifyConfirm(form, name);
 
         e.preventDefault();
     },
@@ -49,6 +55,7 @@ var laravel = {
                     title: "Delete Successfully",
                     text: `You are successfully deleted this ${name}!`,
                     icon: "success",
+                    timer: 2000
                 }).then(function () {
                     form.submit();
                 });

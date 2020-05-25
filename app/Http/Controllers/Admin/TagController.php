@@ -15,9 +15,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('admin.tags.index', [
-            'tags' => Tag::paginate(10)
-        ]);
+        $tags = Tag::paginate(10);
+        return view('admin.tags.index', compact('tags'));
     }
 
     /**
@@ -27,7 +26,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.tag.create');
+        return view('admin.tags.create');
     }
 
     /**
@@ -80,6 +79,6 @@ class TagController extends Controller
     {
         $tag->delete();
 
-        return redirect('admin.tags')->withSuccess(__('admin.delete.success'));
+        return redirect(url()->previous())->withSuccess(__('admin.delete.success'));
     }
 }

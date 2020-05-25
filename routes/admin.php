@@ -13,3 +13,9 @@ Route::resource('categories', 'CategoryController', [
         'index' => 'categories'
     ]
 ])->except('show');
+
+Route::resource('tags', 'TagController', [
+    'names' => [
+        'index' => 'tags'
+    ]
+])->except('show');

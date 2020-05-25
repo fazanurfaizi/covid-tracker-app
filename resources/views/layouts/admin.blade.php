@@ -18,6 +18,7 @@
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('paper/css/paper-dashboard.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
 
     {{-- Scripts --}}
     <script>
@@ -39,5 +40,8 @@
     <script src="{{ asset('plugins/popper/popper.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('paper/js/paper-dashboard.min.js?v=2.0.0') }}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/jquery/jquery.twbsPagination.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    @stack('scripts')
 </body>
 </html>
