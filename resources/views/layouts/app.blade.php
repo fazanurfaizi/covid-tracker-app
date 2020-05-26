@@ -63,6 +63,7 @@
     <script src="{{ asset('plugins/bootstrap/js/bootstrap-notify.js') }}"></script>
     <script src="{{ asset('paper/js/paper-dashboard.min.js?v=2.0.0') }}" type="text/javascript"></script>
     <script src="{{ asset('paper/demo/demo.js') }}"></script>
+    @stack('scripts')
 
 </body>
 </html>

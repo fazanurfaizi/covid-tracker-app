@@ -24663,11 +24663,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-jquery__WEBPACK_IMPORTED_MODULE_0___default()(".select2").select2();
-jquery__WEBPACK_IMPORTED_MODULE_0___default()(".select2-tags").select2({
-  tags: true
-});
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".select2").select2();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".select2-tags").select2({
+    width: "resolve"
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#alert-success").fadeTo(2000, 300).slideUp(300, function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()("#alert-success").slideUp(300);
   });

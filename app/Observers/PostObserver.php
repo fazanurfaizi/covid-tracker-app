@@ -29,20 +29,17 @@ class PostObserver
      */
     public function updating(Post $post)
     {
-        $post->updated_at = now();
+        $post->slug = $post->createSlug($post->title);
     }
 
     /**
-     * Handle the post "deleting" event.
+     * Handle the post "Updated" Event.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Post $post
      * @return void
      */
-    public function deleting(Post $post)
-    {
-        $post->comments->each->delete();
-        $post->tags->each->detach();
-        $post->like->each->delete();
+    public function updated(Post $post) {
+        $post->updated_at = date('Y-m-d G:i:s');
     }
 
 }

@@ -20,12 +20,12 @@ class CommentObserver
     }
 
     /**
-     * Handle the comment "updating" event.
+     * Handle the comment "updated" event.
      *
      * @param  \App\Models\Comment  $comment
      * @return void
      */
-    public function updating(Comment $comment)
+    public function updated(Comment $comment)
     {
         $comment->updated_at = now();
     }

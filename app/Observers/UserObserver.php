@@ -8,13 +8,13 @@ class UserObserver
 {
 
     /**
-     * Handle the user "updating" event.
+     * Handle the user "updated" event.
      *
      * @param  \App\Models\User  $user
      * @return void
      */
-    public function updating(User $user)
+    public function updated(User $user)
     {
-        $user->updated_at = now();
+        $user->updated_at = date('Y-m-d G:i:s');
     }
 }

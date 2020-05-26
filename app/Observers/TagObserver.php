@@ -8,14 +8,14 @@ class TagObserver
 {
 
     /**
-     * Handle the tag "updating" event.
+     * Handle the tag "updated" event.
      *
      * @param  \App\Models\Tag  $tag
      * @return void
      */
-    public function updating(Tag $tag)
+    public function updated(Tag $tag)
     {
-        $tag->updated_at = now();
+        $tag->updated_at = date('Y-m-d G:i:s');
     }
 
     /**
@@ -26,7 +26,7 @@ class TagObserver
      */
     public function deleting(Tag $tag)
     {
-        $tag->posts->each->detach();
+        $tag->posts()->detach();
     }
 
 }

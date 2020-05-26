@@ -13,6 +13,9 @@ return [
         'success' => 'Resource has been deleted successfully',
         'failed' => 'Delete operation on resource has failed'
     ],
+    'post' => [
+        'publish' => 'Post changed successfully.',
+    ],
 ];
 
 ?>

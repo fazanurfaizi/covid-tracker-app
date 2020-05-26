@@ -13,7 +13,7 @@ class CategoryObserver
      * @param  \App\Models\Category  $category
      * @return void
      */
-    public function updating(Category $category)
+    public function updated(Category $category)
     {
         $category->updated_at = now();
     }

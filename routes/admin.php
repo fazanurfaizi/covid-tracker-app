@@ -19,3 +19,10 @@ Route::resource('tags', 'TagController', [
         'index' => 'tags'
     ]
 ])->except('show');
+
+Route::resource('posts', 'PostController', [
+    'names' => [
+        'index' => 'posts'
+    ]
+])->except('show');
+Route::put('posts/{post}/publish', 'PostController@publish');

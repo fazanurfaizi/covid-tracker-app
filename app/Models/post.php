@@ -29,9 +29,13 @@ class Post extends Model
         'updated_at'
     ];
 
-    public function getRouteKeyName() {
-        return 'slug';
-    }
+    protected $with = [
+        'category', 'user'
+    ];
+
+    protected $hidden = [
+        'user_id', 'category_id'
+    ];
 
     public function user() {
         return $this->belongsTo(User::class);
@@ -42,7 +46,7 @@ class Post extends Model
     }
 
     public function comments() {
-        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
 
     public function tags() {
@@ -106,7 +110,7 @@ class Post extends Model
     }
 
     public function getImageUrlAttribute() {
-        if($image) {
+        if($this->image !== null) {
             return asset('uploads/posts/' . $this->image);
         }
     }

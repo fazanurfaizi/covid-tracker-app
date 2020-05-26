@@ -14,33 +14,45 @@
                         </div>
                     @endif
                     <div class="card-header">
-                        <h5 class="card-title">Categories</h5>
+                        <h5 class="card-title">Posts</h5>
                         <p class="card-category">
-                            <a class="btn btn-app" href="{{ route('admin.categories.create') }}">Create New Category</a>
+                            <a class="btn btn-app" href="{{ route('admin.posts.create') }}">Create New Post</a>
                         </p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" style="width: 90%">
+                            <table class="table table-bordered" style="width: 98%">
                                 <thead>
                                     <tr>
                                         <th scope="col" width="5%">Id</th>
-                                        <th scope="col" width="30%">Name</th>
-                                        <th scope="col" width="25%">Post Count</th>
+                                        <th scope="col" width="25%">Title</th>
+                                        <th scope="col" width="15%">Tag List</th>
+                                        <th scope="col" width="15%">Category</th>
                                         <th scope="col" width="30%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($categories as $category)
+                                    @forelse ($posts as $post)
                                         <tr>
-                                            <td scope="row">{{ $category->id }}</td>
-                                            <td>{{ $category->name }}</td>
-                                            <td>{{ $category->post_count }}</td>
+                                            <td scope="row">{{ $post->id }}</td>
+                                            <td>{{ $post->title }}</td>
+                                            <td>{!! implode(", ", $post->tagList) !!}</td>
+                                            <td>{{ $post->category->name }}</td>
                                             <td>
-                                                <a href="{{ url("admin/categories/{$category->id}/edit") }}" class="btn btn-xs- btn-info">
+                                                @php
+                                                    if($post->published == 'Yes') {
+                                                        $label = 'Draft';
+                                                    } else {
+                                                        $label = 'Publish';
+                                                    }
+                                                @endphp
+                                                <a href="{{ url("/admin/posts/{$post->id}/publish") }}" data-method="PUT" data-token="{{ csrf_token() }}" data-confirm="Are you sure?" class="btn btn-xs btn-warning">
+                                                    {{ $label }}
+                                                </a>
+                                                <a href="{{ url("admin/posts/{$post->id}/edit") }}" class="btn btn-xs- btn-info">
                                                     Edit
                                                 </a>
-                                                <a href="{{ url("admin/categories/{$category->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $category->name }}" class="btn btn-xs btn-danger">
+                                                <a href="{{ url("admin/posts/{$post->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $post->name }}" class="btn btn-xs btn-danger">
                                                     Delete
                                                 </a>
                                             </td>
@@ -48,14 +60,14 @@
                                     @empty
                                         <tr>
                                             <td colspan="5">
-                                                <h5 class="text-center">No Category available.</h5>
+                                                <h5 class="text-center">No Post available.</h5>
                                             </td>
                                         </tr>
                                     @endforelse
                                 </tbody>
                             </table>
                         </div>
-                        {!! $categories->links() !!}
+                        {!! $posts->links() !!}
                     </div>
                 </div>
             </div>

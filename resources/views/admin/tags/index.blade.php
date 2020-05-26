@@ -37,7 +37,9 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="2">No Tag available.</td>
+                                            <td colspan="5">
+                                                <h5 class="text-center">No Tag available.</h5>
+                                            </td>
                                         </tr>
                                     @endforelse
                                 </tbody>
