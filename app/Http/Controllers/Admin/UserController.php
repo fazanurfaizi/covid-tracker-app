@@ -15,9 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user.index', [
-            $users = User::withCount('posts')->paginate(10)
-        ]);
+        $users = User::withCount('posts')->paginate(10);
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -31,5 +30,17 @@ class UserController extends Controller
         $user->delete();
 
         return redirect('admin/users')->withSuccess(__('admin.delete.success'));
+    }
+
+    /**
+     * Update User Permission
+     *
+     * @param \App\Models\User $user
+     */
+    public function permission(User $user) {
+        $user->is_admin = !$user->is_admin;
+        $user->save();
+
+        return redirect(url()->previous());
     }
 }

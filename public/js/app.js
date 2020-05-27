@@ -24651,6 +24651,20 @@ module.exports = g;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _laravel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./laravel */ "./resources/js/laravel.js");
+
+
+/***/ }),
+
+/***/ "./resources/js/laravel.js":
+/*!*********************************!*\
+  !*** ./resources/js/laravel.js ***!
+  \*********************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var select2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! select2 */ "./node_modules/select2/dist/js/select2.js");
@@ -24668,8 +24682,8 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".select2-tags").select2({
     width: "resolve"
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#alert-success").fadeTo(2000, 300).slideUp(300, function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#alert-success").slideUp(300);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#alert-success").fadeTo(2000, 300).slideUp(500, function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#alert-success").slideUp(500);
   });
 });
 var laravel = {
@@ -24679,41 +24693,46 @@ var laravel = {
     this.registerEvents();
   },
   registerEvents: function registerEvents() {
+    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("id");
     this.methodLinks.on("click", this.handleMethod);
   },
   handleMethod: function handleMethod(e) {
-    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-    var method = link.data("method").toUpperCase();
+    var method = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("method").toUpperCase();
     var form;
-    var name = link.data("name");
+    var name = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("name");
+    var confirm = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("confirm").split("|");
+    var message = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("message");
+    var button = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("button").split("|");
+    var callback = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("callback").split("|");
+    var canceled = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("canceled");
 
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default.a.inArray(method, ["PUT", "DELETE"]) === -1) {
       return;
     }
 
-    form = laravel.createForm(link);
-    laravel.verifyConfirm(form, name);
+    form = laravel.createForm(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+    laravel.verifyConfirm(form, name, confirm[0], confirm[1], message, button[0], button[1], callback[0], callback[1], canceled);
     e.preventDefault();
   },
-  verifyConfirm: function verifyConfirm(form, name) {
+  verifyConfirm: function verifyConfirm(form, name, title, text, message, yes, cancel, successCallback, cancelesuccessCallback, canceled) {
     sweetalert__WEBPACK_IMPORTED_MODULE_3___default()({
-      title: "Are you sure?",
-      text: "You will delete this ".concat(name),
+      title: "".concat(title),
+      text: "".concat(text, " ").concat(name),
       icon: "warning",
-      buttons: ['No, Cancel it!', 'Yes, I am sure!'],
+      buttons: [cancel, yes],
       dangerMode: true
     }).then(function (confirm) {
       if (confirm) {
         sweetalert__WEBPACK_IMPORTED_MODULE_3___default()({
-          title: "Delete Successfully",
-          text: "You are successfully deleted this ".concat(name, "!"),
+          title: successCallback,
+          text: "".concat(message, " ").concat(name),
           icon: "success",
           timer: 2000
         }).then(function () {
           form.submit();
         });
       } else {
-        sweetalert__WEBPACK_IMPORTED_MODULE_3___default()("Canceled", "You canceled to delete this ".concat(name), "error");
+        sweetalert__WEBPACK_IMPORTED_MODULE_3___default()(canceled, "".concat(cancelesuccessCallback, " ").concat(name), "error");
       }
     });
   },

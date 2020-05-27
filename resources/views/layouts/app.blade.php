@@ -47,12 +47,14 @@
 </head>
 <body>
 
-    <div id="app">
-        @include('shared.app.navbar')
-        <main class="py-4">
-            @yield('content')
-        </main>
-        @include('shared.app.footer')
+    <div class="container-fluid mx-auto">
+        <div id="app">
+            @include('shared.app.navbar')
+            <main class="py-4">
+                @yield('content')
+            </main>
+            @include('shared.app.footer')
+        </div>
     </div>
 
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>

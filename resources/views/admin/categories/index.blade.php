@@ -40,7 +40,7 @@
                                                 <a href="{{ url("admin/categories/{$category->id}/edit") }}" class="btn btn-xs- btn-info">
                                                     Edit
                                                 </a>
-                                                <a href="{{ url("admin/categories/{$category->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $category->name }}" class="btn btn-xs btn-danger">
+                                                <a href="{{ url("admin/categories/{$category->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $category->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-xs btn-danger" id="deleteBtn">
                                                     Delete
                                                 </a>
                                             </td>

@@ -1,18 +1,18 @@
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="{{ url('/') }}" class="simple-text logo-mini">
             <div class="logo-image-small">
-                <img src="{{ asset('paper') }}/img/logo-small.png">
+                <img src="{{ asset('paper/img/logo-small.png') }}">
             </div>
         </a>
-        <a href="#" class="simple-text logo-normal">
+        <a href="{{ url('/') }}" class="simple-text logo-normal">
             {{ config('app.name', 'Covid Tracker') }}
         </a>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="nav-item">
-                <a href="#">
+                <a href="{{ route('admin.dashboard') }}">
                     <i class="nc-icon nc-bank"></i>
                     <p>{{ __('Dashboard') }}</p>
                 </a>
@@ -33,6 +33,12 @@
                 <a href="{{ route('admin.tags') }}">
                     <i class="fa fa-tags"></i>
                     <p>{{ __('Tags') }}</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.users') }}">
+                    <i class="fa fa-user"></i>
+                    <p>{{ __('User Management') }}</p>
                 </a>
             </li>
         </ul>

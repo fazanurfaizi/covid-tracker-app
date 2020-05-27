@@ -81,6 +81,6 @@ class TagController extends Controller
     {
         $tag->delete();
 
-        return redirect(url()->previous())->withSuccess(__('admin.delete.success'));
+        return redirect(url()->previous());
     }
 }

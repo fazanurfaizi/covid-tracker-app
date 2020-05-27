@@ -17,7 +17,7 @@
                     <div class="panel-body">
                         {!! Form::model($post, [
                             'method' => 'PUT',
-                            'url' => "/admin/posts/{$post->id}",
+                            'url' => "admin/posts/{$post->id}",
                             'class' => 'form-horizontal', '
                             role' => 'form',
                             'file' => true,

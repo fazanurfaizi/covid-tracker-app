@@ -14,10 +14,7 @@
                         </div>
                     @endif
                     <div class="card-header">
-                        <h5 class="card-title">Tags</h5>
-                        <p class="card-category">
-                            <a class="btn btn-app" href="{{ route('admin.tags.create') }}">Create New Tag</a>
-                        </p>
+                        <h5 class="card-title">User Management</h5>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -30,15 +27,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($tags as $tag)
+                                    @forelse ($users as $user)
                                         <tr>
-                                            <td scope="row">{{ $tag->id }}</td>
-                                            <td>{{ $tag->name }}</td>
+                                            <td scope="row">{{ $user->id }}</td>
+                                            <td>{{ $user->name }}</td>
                                             <td>
-                                                <a href="{{ url("admin/tags/{$tag->id}/edit") }}" class="btn btn-xs- btn-info">
-                                                    Edit
+                                                @php
+                                                    if($user->permission == 'Yes') {
+                                                        $label = 'Admin';
+                                                    } else {
+                                                        $label = 'Member';
+                                                    }
+                                                @endphp
+                                                <a href="{{ url("admin/users/{$user->id}/permission") }}" data-method="PUT" data-token="{{ csrf_token() }}" data-name="{{ $user->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.update')" data-message="@lang('admin.update.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.update.callback') | @lang('admin.update.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-xs btn-warning">
+                                                    {{ $label }}
                                                 </a>
-                                                <a href="{{ url("admin/tags/{$tag->id}") }}" data-id="{{ $tag->id }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $tag->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-xs btn-danger" id="deleteBtn">
+                                                <a href="{{ url("admin/users/{$user->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $user->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-xs btn-danger" id="deleteBtn">
                                                     Delete
                                                 </a>
                                             </td>
@@ -46,14 +50,14 @@
                                     @empty
                                         <tr>
                                             <td colspan="5">
-                                                <h5 class="text-center">No Tag available.</h5>
+                                                <h5 class="text-center">No User available.</h5>
                                             </td>
                                         </tr>
                                     @endforelse
                                 </tbody>
                             </table>
                         </div>
-                        {!! $tags->links() !!}
+                        {!! $users->links() !!}
                     </div>
                 </div>
             </div>

@@ -24,3 +24,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/profile/update', 'ProfileController@update')->name('profile.update');
     Route::put('/profile/password', 'ProfileController@password')->name('profile.password');
 });
+
+Route::get('/posts', 'PostController@index')->name('posts');
+Route::get('/posts/{slug}', 'PostController@show')->name('posts.show');

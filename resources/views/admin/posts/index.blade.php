@@ -37,7 +37,7 @@
                                             <td scope="row">{{ $post->id }}</td>
                                             <td>{{ $post->title }}</td>
                                             <td>{!! implode(", ", $post->tagList) !!}</td>
-                                            <td>{{ $post->category->name }}</td>
+                                            <td>{{ $post->category->name ?? '' }}</td>
                                             <td>
                                                 @php
                                                     if($post->published == 'Yes') {
@@ -46,13 +46,13 @@
                                                         $label = 'Publish';
                                                     }
                                                 @endphp
-                                                <a href="{{ url("/admin/posts/{$post->id}/publish") }}" data-method="PUT" data-token="{{ csrf_token() }}" data-confirm="Are you sure?" class="btn btn-xs btn-warning">
+                                                <a href="{{ url("admin/posts/{$post->id}/publish") }}" data-method="PUT" data-token="{{ csrf_token() }}" data-name="{{ $post->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.update')" data-message="@lang('admin.update.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.update.callback') | @lang('admin.update.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-xs btn-warning">
                                                     {{ $label }}
                                                 </a>
                                                 <a href="{{ url("admin/posts/{$post->id}/edit") }}" class="btn btn-xs- btn-info">
                                                     Edit
                                                 </a>
-                                                <a href="{{ url("admin/posts/{$post->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $post->name }}" class="btn btn-xs btn-danger">
+                                                <a href="{{ url("admin/posts/{$post->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $post->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-xs btn-danger">
                                                     Delete
                                                 </a>
                                             </td>

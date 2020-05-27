@@ -16,7 +16,7 @@
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
                                         <p class="card-category">Active Cases</p>
-                                        <p class="card-title">1000000</p>
+                                        <p class="card-title" id="active-cases"></p>
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
                                         <p class="card-category">Recovered</p>
-                                        <p class="card-title">$ 1,345<p>
+                                        <p class="card-title" id="recovered"><p>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
                                         <p class="card-category">Deaths</p>
-                                        <p class="card-title">23<p>
+                                        <p class="card-title" id="deaths"><p>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
                                         <p class="card-category">Total Cases</p>
-                                        <p class="card-title">+45K<p>
+                                        <p class="card-title" id="total-cases"><p>
                                     </div>
                                 </div>
                             </div>
@@ -180,9 +180,27 @@
 @endsection
 
 @push('scripts')
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
             demo.initChartsPages();
         });
+
+        getData();
+
+        async function getCountry() {
+            var continent = await new dgContinentsCountries({
+                continentVal: document.getElementById("continent").val,
+                countryVal: document.getElementById("country").val,
+                continent: document.getElementById("continent"),
+                country: document.getElementById("country"),
+                change: true
+            });
+        }
+
+        async function getData() {
+            const response = await fetch('https://api.covid19api.com/summary');
+            const data = await response.json();
+            const { NewConfirmed, TotalConfirmed, TotalDeaths, TotalRecovered } = data.Global;
+        }
     </script>
 @endpush

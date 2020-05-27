@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\Category;
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -23,12 +24,19 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::withCount('likes', 'comments')->latest()->paginate(10);
-        $posts->each(function($post) {
-            $post->tags;
-        });
+        if($request->has('title')) {
+            $posts = Post::where('title', 'LIKE', "%$request->title%")->withCount('likes', 'comments')->latest()->paginate(10);
+            $posts->each(function($post) {
+                $post->tags;
+            });
+        } else {
+            $posts = Post::withCount('likes', 'comments')->latest()->paginate(10);
+            $posts->each(function($post) {
+                $post->tags;
+            });
+        }
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -68,7 +76,7 @@ class PostController extends Controller
             $image = $request->image;
             $ext = $request->image->getClientOriginalExtension();
             $imageName = date('YmdHis') . rand(1, 999999) . '.' . $ext;
-            $thumbnail = Image::make($image->getRealPath())->resize(1024, 1024);
+            $thumbnail = Image::make($image->getRealPath())->resize(1024, 512);
             $savedImage = Image::make($thumbnail)->save($this->uploadPath . $imageName);
             $post->image = $imageName;
         }
@@ -160,6 +168,6 @@ class PostController extends Controller
         $post->is_published = !$post->is_published;
         $post->save();
 
-        return redirect(url()->previous())->withSuccess(__('admin.post.publish'));
+        return redirect(url()->previous());
     }
 }
