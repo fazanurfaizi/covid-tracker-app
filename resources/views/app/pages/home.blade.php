@@ -15,8 +15,8 @@
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Active Cases</p>
-                                        <p class="card-title" id="active-cases"></p>
+                                        <p class="card-category">New Cases</p>
+                                        <p class="card-title" id="new-cases"></p>
                                     </div>
                                 </div>
                             </div>
@@ -201,6 +201,23 @@
             const response = await fetch('https://api.covid19api.com/summary');
             const data = await response.json();
             const { NewConfirmed, TotalConfirmed, TotalDeaths, TotalRecovered } = data.Global;
+
+            document.getElementById("new-cases").innerHTML = turnAngka(NewConfirmed);
+            document.getElementById("recovered").innerHTML = turnAngka(TotalRecovered);
+            document.getElementById("deaths").innerHTML = turnAngka(TotalDeaths);
+            document.getElementById("total-cases").innerHTML = turnAngka(TotalConfirmed);
+        }
+
+        function turnAngka(number) {
+            var	number_string = number.toString();
+            var sisa 	= number_string.length % 3;
+            var rupiah 	= number_string.substr(0, sisa);
+            var ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+                    
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                return rupiah += separator + ribuan.join('.');
+            }
         }
     </script>
 @endpush

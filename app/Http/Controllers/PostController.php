@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -15,7 +16,9 @@ class PostController extends Controller
             return $query->where('title', 'like', "%$search%");
         })->published()->latest()->paginate(6);
 
-        return view('app.posts.index', compact('posts'));
+        $categories = Category::all();
+
+        return view('app.posts.index', compact('posts', 'categories'));
     }
 
     public function show($slug) {

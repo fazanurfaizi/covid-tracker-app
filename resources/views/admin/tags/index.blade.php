@@ -35,12 +35,14 @@
                                             <td scope="row">{{ $tag->id }}</td>
                                             <td>{{ $tag->name }}</td>
                                             <td>
-                                                <a href="{{ url("admin/tags/{$tag->id}/edit") }}" class="btn btn-xs- btn-info">
-                                                    Edit
-                                                </a>
-                                                <a href="{{ url("admin/tags/{$tag->id}") }}" data-id="{{ $tag->id }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $tag->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-xs btn-danger" id="deleteBtn">
-                                                    Delete
-                                                </a>
+                                                <div class="btn-group d-flex">
+                                                    <a href="{{ url("admin/tags/{$tag->id}/edit") }}" class="btn btn-secondary btn-xs btn-info w-100">
+                                                        Edit
+                                                    </a>
+                                                    <a href="{{ url("admin/tags/{$tag->id}") }}" data-id="{{ $tag->id }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $tag->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-secondary btn-xs btn-danger w-100" id="deleteBtn">
+                                                        Delete
+                                                    </a>
+                                                </div>
                                             </td>
                                         </tr>
                                     @empty

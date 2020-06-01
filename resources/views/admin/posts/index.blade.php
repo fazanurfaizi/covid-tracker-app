@@ -20,7 +20,7 @@
                         </p>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive mb-3">
                             <table class="table table-bordered" style="width: 98%">
                                 <thead>
                                     <tr>
@@ -39,22 +39,24 @@
                                             <td>{!! implode(", ", $post->tagList) !!}</td>
                                             <td>{{ $post->category->name ?? '' }}</td>
                                             <td>
-                                                @php
-                                                    if($post->published == 'Yes') {
-                                                        $label = 'Draft';
-                                                    } else {
-                                                        $label = 'Publish';
-                                                    }
-                                                @endphp
-                                                <a href="{{ url("admin/posts/{$post->id}/publish") }}" data-method="PUT" data-token="{{ csrf_token() }}" data-name="{{ $post->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.update')" data-message="@lang('admin.update.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.update.callback') | @lang('admin.update.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-xs btn-warning">
-                                                    {{ $label }}
-                                                </a>
-                                                <a href="{{ url("admin/posts/{$post->id}/edit") }}" class="btn btn-xs- btn-info">
-                                                    Edit
-                                                </a>
-                                                <a href="{{ url("admin/posts/{$post->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $post->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-xs btn-danger">
-                                                    Delete
-                                                </a>
+                                                <div class="btn-group d-flex">
+                                                    @php
+                                                        if($post->published == 'Yes') {
+                                                            $label = 'Draft';
+                                                        } else {
+                                                            $label = 'Publish';
+                                                        }
+                                                    @endphp
+                                                    <a href="{{ url("admin/posts/{$post->id}/publish") }}" data-method="PUT" data-token="{{ csrf_token() }}" data-name="{{ $post->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.update')" data-message="@lang('admin.update.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.update.callback') | @lang('admin.update.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-secondary btn-xs btn-warning w-100">
+                                                        {{ $label }}
+                                                    </a>
+                                                    <a href="{{ url("admin/posts/{$post->id}/edit") }}" class="btn btn-secondary btn-xs btn-info w-100 ">
+                                                        Edit
+                                                    </a>
+                                                    <a href="{{ url("admin/posts/{$post->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $post->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-secondary btn-xs btn-danger w-100">
+                                                        Delete
+                                                    </a>
+                                                </div>
                                             </td>
                                         </tr>
                                     @empty

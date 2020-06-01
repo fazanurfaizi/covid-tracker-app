@@ -32,19 +32,21 @@
                                             <td scope="row">{{ $user->id }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>
-                                                @php
-                                                    if($user->permission == 'Yes') {
-                                                        $label = 'Admin';
-                                                    } else {
-                                                        $label = 'Member';
-                                                    }
-                                                @endphp
-                                                <a href="{{ url("admin/users/{$user->id}/permission") }}" data-method="PUT" data-token="{{ csrf_token() }}" data-name="{{ $user->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.update')" data-message="@lang('admin.update.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.update.callback') | @lang('admin.update.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-xs btn-warning">
-                                                    {{ $label }}
-                                                </a>
-                                                <a href="{{ url("admin/users/{$user->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $user->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-xs btn-danger" id="deleteBtn">
-                                                    Delete
-                                                </a>
+                                                <div class="btn-group d-flex">
+                                                    @php
+                                                        if($user->permission == 'Yes') {
+                                                            $label = 'Admin';
+                                                        } else {
+                                                            $label = 'Member';
+                                                        }
+                                                    @endphp
+                                                    <a href="{{ url("admin/users/{$user->id}/permission") }}" data-method="PUT" data-token="{{ csrf_token() }}" data-name="{{ $user->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.update')" data-message="@lang('admin.update.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.update.callback') | @lang('admin.update.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-secondary btn-xs btn-warning w-100">
+                                                        {{ $label }}
+                                                    </a>
+                                                    <a href="{{ url("admin/users/{$user->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $user->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-secondary btn-xs btn-danger w-100" id="deleteBtn">
+                                                        Delete
+                                                    </a>
+                                                </div>
                                             </td>
                                         </tr>
                                     @empty

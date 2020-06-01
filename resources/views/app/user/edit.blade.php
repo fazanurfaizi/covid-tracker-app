@@ -16,12 +16,12 @@
             <div class="col-md-4">
                 <div class="card card-user">
                     <div class="image">
-                        <img src="{{ asset('paper/img/damir-bosnjak.jpg') }}" alt="...">
+                        <img src="{{ asset('paper/img/header.jpg') }}" alt="...">
                     </div>
                     <div class="card-body">
                         <div class="author">
                             <a href="#">
-                                <img class="avatar border-gray" src="{{ asset('paper/img/default-avatar.png') }}" alt="...">
+                                <img class="avatar border-gray" src="{{ asset('paper/img/logo-small.png') }}" alt="...">
 
                                 <h5 class="title">{{ __(auth()->user()->name)}}</h5>
                             </a>
