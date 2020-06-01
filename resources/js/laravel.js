@@ -1,6 +1,5 @@
 import $ from "jquery";
 import "select2";
-import "bootstrap";
 import swal from "sweetalert";
 
 $(document).ready(function() {
@@ -28,13 +27,21 @@ var laravel = {
     },
 
     handleMethod: function(e) {
-        var method = $(this).data("method").toUpperCase();
+        var method = $(this)
+            .data("method")
+            .toUpperCase();
         var form;
         var name = $(this).data("name");
-        var confirm = $(this).data("confirm").split("|");
+        var confirm = $(this)
+            .data("confirm")
+            .split("|");
         var message = $(this).data("message");
-        var button = $(this).data("button").split("|");
-        var callback = $(this).data("callback").split("|");
+        var button = $(this)
+            .data("button")
+            .split("|");
+        var callback = $(this)
+            .data("callback")
+            .split("|");
         var canceled = $(this).data("canceled");
 
         if ($.inArray(method, ["PUT", "DELETE"]) === -1) {
@@ -67,7 +74,7 @@ var laravel = {
         yes,
         cancel,
         successCallback,
-        cancelesuccessCallback,
+        canceledCallback,
         canceled
     ) {
         swal({
@@ -87,7 +94,7 @@ var laravel = {
                     form.submit();
                 });
             } else {
-                swal(canceled, `${cancelesuccessCallback} ${name}`, "error");
+                swal(canceled, `${canceledCallback} ${name}`, "error");
             }
         });
     },

@@ -24,7 +24,7 @@
                                         <input type="file" class="custom-file-input" id="image" name="image" value="{{ old('image') }}">
                                         <label class="custom-file-label" for="image"></label>
                                     </div>
-                                    <img src="https://images.unsplash.com/photo-1533134486753-c833f0ed4866?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="Image" id="image-preview" width="512" class="mx-auto">
+                                    <img src="{{ asset('images/placeholder.png') }}" alt="Image" id="image-preview" width="512" class="mx-auto">
                                 </div>
                             </div>
                             <div class="form-group">

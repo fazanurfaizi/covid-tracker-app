@@ -13,15 +13,20 @@ class PostController extends Controller
         $posts = Post::when($request->search, function($query) use ($request) {
             $search = $request->search;
             return $query->where('title', 'like', "%$search%");
-        })->published()->latest()->paginate(6);
+        })->published()->latest()->withCount('likes')->paginate(6);
 
         return view('app.posts.index', compact('posts'));
     }
 
     public function show($slug) {
-        $post = Post::where('slug', $slug)->first();
+        $post = Post::where('slug', $slug)->withCount('likes')->first();
 
         return view('app.posts.show', compact('post'));
+    }
+
+    public function like(Request $request) {
+        $post = Post::find($request->id);
+        return $post->like();
     }
 
 }

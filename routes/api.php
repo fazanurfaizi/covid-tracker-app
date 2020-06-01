@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:api'], 'namespace' => 'Api'], function () {
+
+    Route::post('posts/{post}/likes', 'PostLikeController@store')->name('posts.likes.store');
+    Route::delete('posts/{post}/likes', 'PostLikeController@destroy')->name('posts.likes.destroy');
+
 });
