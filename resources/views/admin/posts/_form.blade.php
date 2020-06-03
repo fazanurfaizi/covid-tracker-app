@@ -11,7 +11,9 @@
 <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
     {!! Form::label('body', 'Body', ['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-12">
-        {!! Form::textarea('body', null, ['class' => 'form-control text-editor']) !!}
+        {!! Form::textarea('body', null, [
+            'class' => 'form-control', 'id' => 'text-editor'
+        ]) !!}
         <span class="help-block">
             <strong>{{ $errors->first('body') }}</strong>
         </span>
@@ -45,3 +47,10 @@
         </span>
     </div>
 </div>
+
+@push('scripts')
+    <script src="{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace('text-editor');
+    </script>
+@endpush

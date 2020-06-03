@@ -52,6 +52,10 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    public function scopeAdmin(Builder $query) {
+        return $query->where('is_admin', true);
+    }
+
     public function isAdmin() {
         return $this->is_admin;
     }

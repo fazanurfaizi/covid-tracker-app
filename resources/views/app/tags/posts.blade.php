@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- @include('app.posts._search') --}}
+    @include('app.posts._search')
     <div class="container">
         <div class="row">
             @foreach ($posts as $post)
@@ -20,7 +20,7 @@
                                     <p>
                                         Tags:
                                         @forelse ($post->tags as $tag)
-                                            <span class="label label-default">{{ $tag->name }}</span>
+                                            <a href="{{ url("tags/{$tag->slug}/posts") }}" class="mr-2">#{{ $tag->name }}</a>
                                         @empty
                                             <span class="label label-default"></span>
                                         @endforelse
@@ -43,8 +43,8 @@
                 </div>
             @endforeach
         </div>
-        {{-- <div class="mx-auto mt-3 mb-2" style="width: 200px;">
+        <div class="mx-auto mt-3 mb-2" style="width: 200px;">
             {!! $posts->appends(['search' => request()->get('search')])->links() !!}
-        </div> --}}
+        </div>
     </div>
 @endsection

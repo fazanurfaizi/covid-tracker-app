@@ -37,6 +37,9 @@ class Post extends Model
         'user_id', 'category_id'
     ];
 
+    /**
+     * Post Model Relationships
+     */
     public function user() {
         return $this->belongsTo(User::class);
     }
@@ -53,6 +56,9 @@ class Post extends Model
         return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
+    /**
+     * Custom Post Model Scopes
+     */
     public function scopePublished(Builder $query) {
         return $query->where('is_published', true);
     }
@@ -61,32 +67,13 @@ class Post extends Model
         return $query->where('is_published', false);
     }
 
-    public function scopeSearch(Builder $query, ?string $search) {
-        if($search) {
-            return $query->where('title', 'LIKE', "%{$search}%")
-                    ->orWhere('slug', 'LIKE', "%{$search}%");
-        }
-    }
-
     public function scopeLatest(Builder $query) {
         return $query->orderBy('created_at', 'desc');
     }
 
-    public function scopeLastMonth(Builder $query, int $limit = 5) {
-        return $query->whereDate('created_at', '>', Carbon::now()->subMonth())
-                ->latest()
-                ->limit($limit);
-    }
-
-    public function scopeLastWeek(Builder $query, int $limit = 5) {
-        return $query->whereDate('created_at', '>', Carbon::now()->subWeek())
-                ->latest();
-    }
-
-    public function scopeAdmin(Builder $query) {
-        return $query->where('is_admin', true);
-    }
-
+    /**
+     * Custom Post Model Attributes
+     */
     public function getPublishedAttribute() {
         return ($this->is_published);
     }
@@ -115,6 +102,9 @@ class Post extends Model
         }
     }
 
+    /**
+     * Create Unique Post Slug
+     */
     public function createSlug($title, $id = 0)
     {
         $slug = str_slug($title);
@@ -134,6 +124,9 @@ class Post extends Model
         throw new Exception('Can not create a unique slug');
     }
 
+    /**
+     * Check if Slug is already used
+     */
     protected function getRelatedSlugs($slug, $id = 0)
     {
         return Post::select('slug')->where('slug', 'like', $slug.'%')

@@ -68,11 +68,12 @@ class PostController extends Controller
         $post->category_id = $request->category_id;
         $post->is_published = $request->is_published ?? '0';
 
-        if(!file_exists($this->uploadPath)) {
-            mkdir($this->uploadPath, 777, true);
-        }
-
         if($request->hasFile('image')) {
+
+            if(!file_exists($this->uploadPath)) {
+                mkdir($this->uploadPath, 777, true);
+            }
+
             $image = $request->image;
             $ext = $request->image->getClientOriginalExtension();
             $imageName = date('YmdHis') . rand(1, 999999) . '.' . $ext;
@@ -122,6 +123,11 @@ class PostController extends Controller
         ]);
 
         if($request->hasFile('image')) {
+
+            if(!file_exists($this->uploadPath)) {
+                mkdir($this->uploadPath, 777, true);
+            }
+
             $image = $request->image;
             $ext = $request->image->getClientOriginalExtension();
             $imageName = date('YmdHis') . rand(1, 999999) . '.' . $ext;

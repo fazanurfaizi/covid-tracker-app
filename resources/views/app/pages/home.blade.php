@@ -187,6 +187,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
+                                <span class="label">Posted: {{ $post->created_at->diffForHumans() }}</span>
                             </div>
                         </div>
                     </div>
