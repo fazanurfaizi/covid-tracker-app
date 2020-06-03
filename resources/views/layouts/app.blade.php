@@ -39,10 +39,13 @@
 
     <title>{{ config('app.name', 'Covid Tracker App') }}</title>
 
+    {{-- JQuery --}}
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('paper/css/paper-dashboard.css?v=2.0.0') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
 </head>
 <body>
 

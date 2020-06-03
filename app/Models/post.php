@@ -30,7 +30,7 @@ class Post extends Model
     ];
 
     protected $with = [
-        'category', 'user'
+        'category', 'user', 'comments'
     ];
 
     protected $hidden = [
@@ -46,7 +46,7 @@ class Post extends Model
     }
 
     public function comments() {
-        return $this->hasMany(Comment::class)->whereNull('parent_id');
+        return $this->hasMany(Comment::class)->whereNull('parent_id')->orderBy('created_at', 'desc');
     }
 
     public function tags() {
@@ -88,7 +88,7 @@ class Post extends Model
     }
 
     public function getPublishedAttribute() {
-        return ($this->is_published) ? 'Yes' : 'No';
+        return ($this->is_published);
     }
 
     public function getRelatedPostsAttribute() {
@@ -99,7 +99,7 @@ class Post extends Model
             $posts = Post::where('posts.id', '<>', $this->id)
                     ->whereHas('tags', function($query) use ($tagsId) {
                         $query->whereIn('tags.id', $tagsId);
-                    })->get();
+                    })->limit(3)->get();
         }
 
         return $posts;

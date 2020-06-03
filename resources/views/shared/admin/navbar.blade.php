@@ -17,16 +17,6 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-                <div class="input-group no-border">
-                    <input type="text" value="" class="form-control" placeholder="Search...">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <i class="nc-icon nc-zoom-split"></i>
-                        </div>
-                    </div>
-                </div>
-            </form>
             <ul class="navbar-nav">
                 <li class="nav-item btn-rotate dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2"
@@ -40,7 +30,7 @@
                         <form class="dropdown-item" action="{{ route('logout') }}" id="formLogOut" method="POST" style="display: none;">
                             @csrf
                         </form>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <div aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ route('profile') }}">{{ __('My profile') }}</a>
                             <a class="dropdown-item" onclick="document.getElementById('formLogOut').submit();">{{ __('Log out') }}</a>
                         </div>

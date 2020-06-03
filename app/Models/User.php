@@ -57,7 +57,7 @@ class User extends Authenticatable
     }
 
     public function getPermissionAttribute() {
-        return ($this->is_admin) ? 'Yes' : 'No';
+        return ($this->is_admin);
     }
 
 }

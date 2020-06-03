@@ -6,6 +6,16 @@ use App\Models\Tag;
 
 class TagObserver
 {
+    /**
+     * Handle the tag "creating" event.
+     *
+     * @param  \App\Models\Tag  $tag
+     * @return void
+     */
+    public function creating(Tag $tag)
+    {
+        $tag->slug = str_slug($tag->name);
+    }
 
     /**
      * Handle the tag "updated" event.

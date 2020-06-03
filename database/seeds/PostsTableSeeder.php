@@ -21,13 +21,12 @@ class PostsTableSeeder extends Seeder
         $users = User::select('id')->get();
         $categories = Category::select('id')->get();
         $tags = Tag::all();
-        $images = File::allFiles(public_path('uploads/posts/'));
 
         for ($i = 0; $i < 15; $i++) {
             Post::create([
                 'title' => $faker->sentence,
                 'body' => $faker->paragraph(10),
-                'image' => $images[rand(0, 5)]->getFilename(),
+                'image' => null,
                 'user_id' => $users->random()->id,
                 'category_id' => $categories->random()->id,
                 'is_published' => rand(0, 1),
