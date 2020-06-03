@@ -16,8 +16,8 @@ class PostController extends Controller
             $search = $request->search;
             return $query->where('title', 'like', "%$search%");
         })->when($request->category, function($query) use ($request) {
-            $category_name = $request->category;
-            $category = Category::where('name', $category_name)->first();
+            $category_slug = $request->category;
+            $category = Category::where('slug', $category_slug)->first();
             return $query->where('category_id', $category->id);
         })->published()->latest()->withCount('likes')->paginate(6);
 

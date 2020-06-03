@@ -51,7 +51,7 @@
             @endforelse
         </div>
         <div class="mx-auto mt-3 mb-2" style="width: 200px;">
-            {!! $posts->appends(['search' => request()->get('search')])->links() !!}
+            {!! $posts->appends(['search' => request()->get('search'), 'category' => request()->get('category')])->links() !!}
         </div>
     </div>
 @endsection

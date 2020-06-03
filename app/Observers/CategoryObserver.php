@@ -6,6 +6,16 @@ use App\Models\Category;
 
 class CategoryObserver
 {
+    /**
+     * Handle the category "creating" event.
+     *
+     * @param  \App\Models\Category  $category
+     * @return void
+     */
+    public function creating(Category $category)
+    {
+        $category->slug = str_slug($category->name);
+    }
 
     /**
      * Handle the category "updated" event.
