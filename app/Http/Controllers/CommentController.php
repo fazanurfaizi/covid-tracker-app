@@ -15,7 +15,7 @@ class CommentController extends Controller
         $comment->parent_id = $request->parent_id ?? null;
         $post->comments()->save($comment);
 
-        return back();
+        return response()->noContent();
     }
 
 }

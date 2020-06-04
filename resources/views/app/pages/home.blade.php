@@ -10,7 +10,7 @@
                             <div class="row">
                                 <div class="col-5 col-md-4">
                                     <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-ambulance text-warning"></i>
+                                        <i class="fa fa-ambulance text-warning"></i>
                                     </div>
                                 </div>
                                 <div class="col-7 col-md-8">
@@ -36,7 +36,7 @@
                             <div class="row">
                                 <div class="col-5 col-md-4">
                                     <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-user-run text-success"></i>
+                                        <i class="fa fa-user text-success"></i>
                                     </div>
                                 </div>
                                 <div class="col-7 col-md-8">
@@ -61,7 +61,7 @@
                             <div class="row">
                                 <div class="col-5 col-md-4">
                                     <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-sound-wave text-danger"></i>
+                                        <i class="fa fa-warning text-danger"></i>
                                     </div>
                                 </div>
                                 <div class="col-7 col-md-8">
@@ -86,7 +86,7 @@
                             <div class="row">
                                 <div class="col-5 col-md-4">
                                     <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-favourite-28 text-primary"></i>
+                                        <i class="fa fa-calendar-plus-o text-primary"></i>
                                     </div>
                                 </div>
                                 <div class="col-7 col-md-8">

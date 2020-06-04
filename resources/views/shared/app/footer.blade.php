@@ -4,7 +4,7 @@
             <div class="credits ml-auto">
                 <span class="copyright">
                     ©
-                    <script>
+                    <script type="application/javascript">
                         document.write(new Date().getFullYear())
                     </script>
                     {{ __(', made with ') }}

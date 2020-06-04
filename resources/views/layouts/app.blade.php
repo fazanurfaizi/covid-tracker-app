@@ -46,11 +46,16 @@
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('paper/css/paper-dashboard.css?v=2.0.0') }}"/>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
 </head>
 <body>
 
-    <div class="container-fluid mx-auto">
-        <div id="app">
+    <div id="app">
+        <div class="container-fluid mx-auto">
             @include('shared.app.navbar')
             <main class="py-4">
                 @yield('content')
@@ -59,6 +64,7 @@
         </div>
     </div>
 
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/popper/popper.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>

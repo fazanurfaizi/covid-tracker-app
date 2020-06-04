@@ -17,8 +17,17 @@
                 <p>{{ $post->body }}</p>
                 {{-- Content --}}
                 <hr>
-                <button class="btn btn-dark" onclick='$("#post-comments").toggle();'>Show Comments</button>
-                <div class="row" style="display: none;" id="post-comments">
+                    <p class="mt-3">
+                        <like
+                            :likes-count="{{ $post->likes_count }}"
+                            :liked="{{ json_encode($post->isLiked()) }}"
+                            :item-id="{{ $post->id }}"
+                            item-type="posts"
+                            :logged-in="{{ json_encode(Auth::check()) }}"
+                        />
+                    </p>
+
+                <div class="row" id="post-comments">
                     <div class="col-12">
                         <div class="comments">
                             {{-- Comments Form --}}
@@ -91,11 +100,4 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            $(".reply-popup").click(function() {
-                $(".reply-box").toggle();
-            });
-        });
-    </script>
 @endsection

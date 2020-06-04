@@ -13,8 +13,8 @@ try {
     require('bootstrap');
 } catch (e) {}
 
-window.Vue = require('vue');
-require('./laravel')
+// window.Vue = require('vue');
+// require('./laravel')
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
