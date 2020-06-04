@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['auth:api'], 'namespace' => 'Api'], function () {
+Route::group(['namespace' => 'Api'], function () {
 
     Route::post('posts/{post}/likes', 'PostLikeController@store')->name('posts.likes.store');
-    Route::delete('posts/{post}/likes', 'PostLikeController@destroy')->name('posts.likes.destroy');
+    Route::delete('posts/{post}/dislike', 'PostLikeController@destroy')->name('posts.likes.destroy');
+
+    Route::post('comments/{comment}/likes', 'CommentLikeController@store')->name('comments.likes.store');
+    Route::delete('comments/{comment}/dislike', 'CommentLikeController@destroy')->name('comments.likes.destroy');
 
 });

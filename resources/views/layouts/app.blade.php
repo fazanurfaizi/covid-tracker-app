@@ -54,17 +54,16 @@
 </head>
 <body>
 
-    <div id="app">
+    <div>
         <div class="container-fluid mx-auto">
             @include('shared.app.navbar')
-            <main class="py-4">
+            <main class="py-4" id="app">
                 @yield('content')
             </main>
             @include('shared.app.footer')
         </div>
     </div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/popper/popper.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -74,6 +73,7 @@
     <script src="{{ asset('paper/js/paper-dashboard.min.js?v=2.0.0') }}" type="text/javascript"></script>
     <script src="{{ asset('paper/demo/demo.js') }}"></script>
     @stack('scripts')
+    <script src="{{ asset('js/app.js') }}"></script>
 
 </body>
 </html>

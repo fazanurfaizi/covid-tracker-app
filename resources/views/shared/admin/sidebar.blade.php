@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="white" data-active-color="danger">
+<nav id="sidebar" class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
         <a href="{{ url('/') }}" class="simple-text logo-mini">
             <div class="logo-image-small">
@@ -13,7 +13,7 @@
         <ul class="nav">
             <li class="nav-item">
                 <a href="{{ route('admin.dashboard') }}">
-                    <i class="nc-icon nc-bank"></i>
+                    <i class="fa fa-bank"></i>
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
@@ -43,4 +43,4 @@
             </li>
         </ul>
     </div>
-</div>
+</nav>

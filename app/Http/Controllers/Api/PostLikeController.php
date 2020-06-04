@@ -10,11 +10,11 @@ class PostLikeController extends Controller
 {
 
     public function store(Request $request, Post $post) {
-        return $post->like();
+        return $post->like($request->userId);
     }
 
-    public function destroy(Post $post) {
-        return $post->dislike();
+    public function destroy(Request $request, Post $post) {
+        return $post->dislike($request->userId);
     }
 
 }

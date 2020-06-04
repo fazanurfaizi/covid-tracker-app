@@ -31,9 +31,4 @@ class PostController extends Controller
         return view('app.posts.show', compact('post', 'relatedPosts'));
     }
 
-    public function like(Request $request) {
-        $post = Post::find($request->id);
-        return $post->like();
-    }
-
 }

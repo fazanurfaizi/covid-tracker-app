@@ -17,16 +17,16 @@
                 <p>{{ $post->body }}</p>
                 {{-- Content --}}
                 <hr>
-                    <p class="mt-3">
-                        <like
-                            :likes-count="{{ $post->likes_count }}"
-                            :liked="{{ json_encode($post->isLiked()) }}"
-                            :item-id="{{ $post->id }}"
-                            item-type="posts"
-                            :logged-in="{{ json_encode(Auth::check()) }}"
-                        />
-                    </p>
-
+                <p class="mt-3">
+                    <like
+                        :likes-count="{{ $post->likes_count }}"
+                        :liked="{{ json_encode($post->isLiked()) }}"
+                        :item-id="{{ $post->id }}"
+                        item-type="posts"
+                        :logged-in="{{ json_encode(Auth::check()) }}"
+                        :user-id="{{ json_encode(Auth::user()->id) }}"
+                    />
+                </p>
                 <div class="row" id="post-comments">
                     <div class="col-12">
                         <div class="comments">

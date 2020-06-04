@@ -18,5 +18,4 @@ class LikeObserver
             $like->user_id = auth()->user()->id;
         }
     }
-
 }

@@ -23,6 +23,7 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <script src="{{ asset('js/sidebar.js') }}"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -33,7 +34,6 @@
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="{{ asset('js/image.js') }}"></script>
     <script src="{{ asset('plugins/popper/popper.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery/perfect-scrollbar.jquery.min.js') }}"></script>

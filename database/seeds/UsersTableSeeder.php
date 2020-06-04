@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => now(),
             'is_admin' => 1,
             'remember_token' => Str::random(10),
+            'api_token' => str_random(60),
         ]);
     }
 }

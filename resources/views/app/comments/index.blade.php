@@ -8,12 +8,16 @@
             <span class="comment-time">{{ $comment->created_at->diffForHumans() }}</span>
         </span>
         <p class="comment-txt more">{{ $comment->body }}</p>
-        <div class="comment-meta">
-            <button class="comment-like">
-                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-            </button>
-            <button class="comment-dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 149</button>
+        <div class="comment-meta mb-3">
             <button class="comment-reply" onclick='$("#reply-box{{ $comment->id }}").toggle();'><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
+            <like
+                :likes-count="{{ count($comment->likes) }}"
+                :liked="{{ json_encode($comment->isLiked()) }}"
+                :item-id="{{ $comment->id }}"
+                item-type="comments"
+                :logged-in="{{ json_encode(Auth::check()) }}"
+                :user-id="{{ json_encode(Auth::user()->id) }}"
+            />
         </div>
         <div class="comment-box add-comment reply-box m-0" id="reply-box{{ $comment->id }}">
             <div class="row">

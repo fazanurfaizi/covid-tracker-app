@@ -8,7 +8,7 @@
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
             </div>
-            <a class="navbar-brand" href="#pablo">{{ __('Paper Dashboard') }}</a>
+            <a class="navbar-brand" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
             aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,9 +21,9 @@
                 <li class="nav-item btn-rotate dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="nc-icon nc-settings-gear-65"></i>
+                        <i class="fa fa-gear"></i>
                         <p>
-                            <span class="d-lg-none d-md-block">{{ __('Account') }}</span>
+                            <span class="d-lg-none d-md-block">{{ Auth::user()->name }}</span>
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">

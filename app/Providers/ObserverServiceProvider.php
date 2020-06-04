@@ -30,6 +30,6 @@ class ObserverServiceProvider extends ServiceProvider
         Tag::observe(TagObserver::class);
         Post::observe(PostObserver::class);
         Comment::observe(CommentObserver::class);
-        LIke::observe(LikeObserver::class);
+        // Like::observe(LikeObserver::class);
     }
 }

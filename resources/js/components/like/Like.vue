@@ -6,7 +6,7 @@
             style="user-select: none"
             :style="[isLoggedIn ? { cursor: 'pointer' } : '']"
             aria-hidden="true"
-            @click="likeClick"
+            @click.prevent="likeClick"
         />
         {{ count }}
     </span>
@@ -34,6 +34,10 @@ export default {
         loggedIn: {
             type: Boolean,
             required: true
+        },
+        userId: {
+            type: Number,
+            required: true
         }
     },
     data() {
@@ -41,7 +45,8 @@ export default {
             isLiked: this.liked,
             isLoggedIn: this.loggedIn,
             count: this.likesCount,
-            isLoading: false
+            isLoading: false,
+            api_token: this.apiToken
         }
     },
     methods: {
@@ -53,37 +58,38 @@ export default {
             if(this.isLiked) {
                 return this.dislike();
             }
-
-            this.like();
+            return this.like();
         },
 
         like() {
             this.isLoading = true;
-            axios.post(`/api/${this.itemType}/${this.itemId}/likes`)
-                .then(response => {
-                    this.isLoading = false;
-                    this.isLiked = true;
-                    this.count++;
-                })
-                .catch((error) => {
-                    console.log(error);
-                    this.isLoading = false;
-                });
+            axios.post(`/api/${this.itemType}/${this.itemId}/likes`, {
+                userId: this.userId
+            })
+            .then(response => {
+                this.isLoading = false;
+                this.isLiked = true;
+                this.count++;
+            }).catch((error) => {
+                console.log(error);
+                this.isLoading = false;
+            });
         },
 
         dislike() {
             this.isLoading = true;
-            axios.delete(`/api/${this.type}/${this.itemId}/likes`)
-                .then(response => {
-                    this.isLoading = false;
-                    this.isLiked = false;
-                    this.count--;
-                })
-                .catch((error) => {
-                    console.log(error);
-                    this.isLoading = false;
-                });
+            axios.delete(`/api/${this.itemType}/${this.itemId}/dislike`, {
+                userId: this.userId
+            }).then(response => {
+                this.isLoading = false;
+                this.isLiked = false;
+                this.count--;
+            }).catch((error) => {
+                console.log(error);
+                this.isLoading = false;
+            });
         }
+
     }
 }
 </script>

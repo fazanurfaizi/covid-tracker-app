@@ -19,6 +19,10 @@ class Comment extends Model
         'updated_at'
     ];
 
+    protected $with = [
+        'likes'
+    ];
+
     public function post() {
         return $this->belongsTo(Post::class);
     }
