@@ -19,10 +19,18 @@ class LikesTableSeeder extends Seeder
         $faker = Factory::create();
         $users = User::all();
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             Like::create([
                 'user_id' => $users->random()->id,
-                'likeable_type' => rand(0, 1) === 1 ? Post::class : Comment::class,
+                'likeable_type' => Post::class,
+                'likeable_id' => rand(1, 15)
+            ]);
+        }
+
+        for ($i = 0; $i < 25; $i++) {
+            Like::create([
+                'user_id' => $users->random()->id,
+                'likeable_type' => Comment::class,
                 'likeable_id' => rand(1, 15)
             ]);
         }

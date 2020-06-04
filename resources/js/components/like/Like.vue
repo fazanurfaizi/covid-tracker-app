@@ -45,8 +45,7 @@ export default {
             isLiked: this.liked,
             isLoggedIn: this.loggedIn,
             count: this.likesCount,
-            isLoading: false,
-            api_token: this.apiToken
+            isLoading: false
         }
     },
     methods: {
@@ -78,8 +77,16 @@ export default {
 
         dislike() {
             this.isLoading = true;
-            axios.delete(`/api/${this.itemType}/${this.itemId}/dislike`, {
-                userId: this.userId
+            axios({
+                method: 'DELETE',
+                url: `/api/${this.itemType}/${this.itemId}/dislike`,
+                data: {
+                    userId: this.userId
+                },
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             }).then(response => {
                 this.isLoading = false;
                 this.isLiked = false;

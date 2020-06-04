@@ -34,7 +34,7 @@
                             <textarea class="form-control" name="body" id="comment-body" rows="3" placeholder="Leave a comment"></textarea>
                         </div>
                         <button type="submit" class="btn btn-default">Comment</button>
-                        <button type="reset" class="btn btn-default">Cancel</button>
+                        <button type="reset" class="btn btn-default" onclick='$("#reply-box{{ $comment->id }}").toggle();'>Cancel</button>
                     </form>
                 </div>
             </div>

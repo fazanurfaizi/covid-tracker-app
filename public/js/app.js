@@ -1954,8 +1954,7 @@ __webpack_require__.r(__webpack_exports__);
       isLiked: this.liked,
       isLoggedIn: this.loggedIn,
       count: this.likesCount,
-      isLoading: false,
-      api_token: this.apiToken
+      isLoading: false
     };
   },
   methods: {
@@ -1989,8 +1988,16 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.isLoading = true;
-      axios["delete"]("/api/".concat(this.itemType, "/").concat(this.itemId, "/dislike"), {
-        userId: this.userId
+      axios({
+        method: 'DELETE',
+        url: "/api/".concat(this.itemType, "/").concat(this.itemId, "/dislike"),
+        data: {
+          userId: this.userId
+        },
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }).then(function (response) {
         _this2.isLoading = false;
         _this2.isLiked = false;
