@@ -54,7 +54,7 @@
 </head>
 <body>
 
-    <div class="container-fluid mx-auto">
+    <div class="mx-auto">
         @include('shared.app.navbar')
         <main class="py-4" id="app">
             @yield('content')

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/posts/{id}/likes', 'PostController@like');
