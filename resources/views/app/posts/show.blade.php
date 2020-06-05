@@ -24,9 +24,10 @@
                         :item-id="{{ $post->id }}"
                         item-type="posts"
                         :logged-in="{{ json_encode(Auth::check()) }}"
-                        :user-id="{{ json_encode(Auth::user()->id) }}"
+                        :user-id="{{ Auth::check() ? json_encode(Auth::user()->id) : '0' }}"
                     />
                 </p>
+                <input type="button" class="btn btn-dark" id="comments-btn" value="Hide Comments"/>
                 <div class="row" id="post-comments">
                     <div class="col-12">
                         <div class="comments">
@@ -101,3 +102,18 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#comments-btn').click(function() {
+                $('#post-comments').toggle();
+                if($('#post-comments').css('display') == 'none'){
+                    $('#comments-btn').val('Show Comments');
+                } else {
+                    $('#comments-btn').val('Hide Comments');
+                }
+            })
+        })
+    </script>
+@endpush

@@ -64,6 +64,7 @@ class TagController extends Controller
      */
     public function update(TagRequest $request, Tag $tag)
     {
+        $this->authorize('update', $tag);
         $tag->update([
             'name' => $request->name
         ]);
@@ -79,6 +80,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
+        $this->authorize('delete', $tag);
         $tag->delete();
 
         return redirect(url()->previous());

@@ -24,20 +24,20 @@
                             <table class="table table-bordered mb-3" style="width: 98%">
                                 <thead>
                                     <tr>
-                                        <th scope="col" width="5%">Id</th>
-                                        <th scope="col" width="25%">Title</th>
-                                        <th scope="col" width="15%">Tag List</th>
-                                        <th scope="col" width="15%">Category</th>
-                                        <th scope="col" width="30%">Action</th>
+                                        <th scope="col" width="5%" class="text-center border">Id</th>
+                                        <th scope="col" width="25%" class="text-center border">Title</th>
+                                        <th scope="col" width="15%" class="text-center border">Tag List</th>
+                                        <th scope="col" width="15%" class="text-center border">Category</th>
+                                        <th scope="col" width="30%" class="text-center border">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($posts as $post)
                                         <tr>
-                                            <td scope="row">{{ $post->id }}</td>
-                                            <td>{{ $post->title }}</td>
-                                            <td>{!! implode(", ", $post->tagList) !!}</td>
-                                            <td>{{ $post->category->name ?? '' }}</td>
+                                            <td scope="row" class="text-center">{{ $post->id }}</td>
+                                            <td class="text-left">{{ $post->title }}</td>
+                                            <td class="text-center">{!! implode(", ", $post->tagList) !!}</td>
+                                            <td class="text-center">{{ $post->category->name ?? '' }}</td>
                                             <td>
                                                 <div class="btn-group d-flex">
                                                     @php

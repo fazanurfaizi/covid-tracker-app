@@ -14,15 +14,14 @@
                                 <img class="img-thumbnail rounded mx-auto d-block" src="{{ asset('images/placeholder.png') }}" alt="{{ $post->title }}">
                             @endif
                             <div class="container">
-                                <h6 class="card-title mt-3 text-dark">{{ str_limit($post->title, 15) }}</h6>
+                                <h6 class="card-title mt-3 text-dark">{{ str_limit($post->title, 30) }}</h6>
                                 <div class="meta">
                                     <p>{{ str_limit($post->body, 75) }}</p>
-                                        Tags:
-                                        @forelse ($post->tags as $tag)
-                                            <a href="{{ url("tags/{$tag->slug}/posts") }}">#{{ $tag->name }}</a>
-                                        @empty
-                                            <span class="label label-default"></span>
-                                        @endforelse
+                                    @forelse ($post->tags as $tag)
+                                        <a href="{{ url("tags/{$tag->slug}/posts") }}">#{{ $tag->name }}</a>
+                                    @empty
+                                        <span class="label label-default"></span>
+                                    @endforelse
                                 </div>
                                 <div class="card-text">
                                     <span class="btn btn-sm btn-success">By: {{ $post->user->name }}</span>

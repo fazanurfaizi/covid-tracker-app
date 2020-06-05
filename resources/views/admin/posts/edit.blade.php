@@ -18,11 +18,10 @@
                         {!! Form::model($post, [
                             'method' => 'PUT',
                             'url' => "admin/posts/{$post->id}",
-                            'class' => 'form-horizontal', '
-                            role' => 'form',
+                            'class' => 'form-horizontal',
                             'file' => true,
-                            'enctype'=>'multipart/form-data'])
-                        !!}
+                            'enctype'=>'multipart/form-data'
+                        ])!!}
                             @include('admin.posts._form')
                             <div class="form-group">
                                 <div class="row">

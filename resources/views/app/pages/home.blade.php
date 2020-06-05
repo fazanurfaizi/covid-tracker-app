@@ -163,13 +163,11 @@
                                     <img class="img-thumbnail rounded mx-auto d-block" src="{{ asset('images/placeholder.png') }}" alt="{{ $post->title }}">
                                 @endif
                                 <div class="container">
-                                    <div class="card-title mt-3">{{ $post->title }}</div>
+                                    <h6 class="card-title mt-3">{{ str_limit($post->title, 30) }}</h6>
                                     <div class="meta">
-                                        <p>{{ str_limit($post->body, 75) }}</p>
                                         <p>
-                                            Tags:
                                             @forelse ($post->tags as $tag)
-                                                <span class="label label-default">{{ $tag->name }}</span>
+                                                <a href="{{ url("tags/{$tag->slug}/posts") }}">#{{ $tag->name }}</a>
                                             @empty
                                                 <span class="label label-default"></span>
                                             @endforelse
@@ -180,14 +178,15 @@
                                         @if ($post->category)
                                             <span class="btn btn-sm btn-info">{{ $post->category->name }}</span>
                                         @endif
-                                        <a href="{{ url("posts/{$post->slug}") }}" class="btn btn-secondary float-right btn-sm">
-                                            Show
-                                        </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <span class="label">Posted: {{ $post->created_at->diffForHumans() }}</span>
+                                <a href="{{ url("posts/{$post->slug}") }}" class="btn btn-secondary float-right btn-sm">
+                                    Show
+                                </a>
+                                <span class="label">{{ $post->created_at->format('d M Y') }}</span>
+                                <span class="label">&minus; {{ $post->comments_count }} Comments</span>
                             </div>
                         </div>
                     </div>
@@ -208,30 +207,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             demo.initChartsPages();
+            getData();
         });
-
-        getData();
-
-        async function getData() {
-            const response = await fetch('https://api.covid19api.com/summary');
-            const data = await response.json();
-            const { NewConfirmed, TotalConfirmed, TotalDeaths, TotalRecovered } = data.Global;
-            document.getElementById('new-cases').innerHTML = turnAngka(NewConfirmed);
-            document.getElementById('recovered').innerHTML = turnAngka(TotalRecovered);
-            document.getElementById('deaths').innerHTML = turnAngka(TotalDeaths);
-            document.getElementById('total-cases').innerHTML = turnAngka(TotalConfirmed);
-        }
-
-        function turnAngka(number) {
-            var num_string = number.toString();
-            var sisa = num_string.length % 3;
-            var rupiah = num_string.substr(0, sisa);
-            var ribuan = num_string.substr(sisa).match(/\d{3}/g);
-
-            if(ribuan) {
-                var separator = sisa ? '.' : '';
-                return rupiah += separator + ribuan.join('.');
-            }
-        }
     </script>
 @endpush

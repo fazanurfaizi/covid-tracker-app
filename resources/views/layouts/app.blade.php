@@ -44,7 +44,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('paper/css/paper-dashboard.css?v=2.0.0') }}"/>
+    <link rel="stylesheet" href="{{ asset('paper/css/paper-dashboard.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
     <script>
         window.Laravel = {!! json_encode([
@@ -54,26 +54,27 @@
 </head>
 <body>
 
-    <div>
-        <div class="container-fluid mx-auto">
-            @include('shared.app.navbar')
-            <main class="py-4" id="app">
-                @yield('content')
-            </main>
-            @include('shared.app.footer')
-        </div>
+    <div class="container-fluid mx-auto">
+        @include('shared.app.navbar')
+        <main class="py-4" id="app">
+            @yield('content')
+        </main>
+        @include('shared.app.footer')
+        <a id="back-to-top" href="#" class="btn btn-light btn-md back-to-top text-center" role="button">
+            <i class="fa fa-chevron-up"></i>
+        </a>
     </div>
 
-    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/popper/popper.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/chart-js/chartjs.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap-notify.js') }}"></script>
     <script src="{{ asset('paper/js/paper-dashboard.min.js?v=2.0.0') }}" type="text/javascript"></script>
-    <script src="{{ asset('paper/demo/demo.js') }}"></script>
-    @stack('scripts')
+    <script src="{{ asset('js/covid.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    @stack('scripts')
 
 </body>
 </html>

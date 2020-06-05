@@ -35,4 +35,15 @@ class UserPolicy
         return true;
     }
 
+    /**
+     * Determine whether the user change permission the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
+     * @return mixed
+     */
+    public function permission(User $user, User $model) {
+        return $user->id !== $model->id;
+    }
+
 }

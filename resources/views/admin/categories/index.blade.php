@@ -24,18 +24,18 @@
                             <table class="table table-bordered" style="width: 90%">
                                 <thead>
                                     <tr>
-                                        <th scope="col" width="5%">Id</th>
-                                        <th scope="col" width="30%">Name</th>
-                                        <th scope="col" width="25%">Post Count</th>
-                                        <th scope="col" width="30%">Action</th>
+                                        <th scope="col" width="5%" class="text-center border">Id</th>
+                                        <th scope="col" width="30%" class="text-center border">Name</th>
+                                        <th scope="col" width="25%" class="text-center border">Post Count</th>
+                                        <th scope="col" width="30%" class="text-center border">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($categories as $category)
                                         <tr>
-                                            <td scope="row">{{ $category->id }}</td>
-                                            <td>{{ $category->name }}</td>
-                                            <td>{{ $category->post_count }}</td>
+                                            <td scope="row" class="text-center">{{ $category->id }}</td>
+                                            <td class="text-center">{{ $category->name }}</td>
+                                            <td class="text-center">{{ $category->posts_count }}</td>
                                             <td>
                                                 <div class="btn-group d-flex">
                                                     <a href="{{ url("admin/categories/{$category->id}/edit") }}" class="btn btn-secondary btn-xs btn-info w-100">

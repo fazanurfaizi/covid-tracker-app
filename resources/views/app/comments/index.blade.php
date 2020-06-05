@@ -9,15 +9,23 @@
         </span>
         <p class="comment-txt more">{{ $comment->body }}</p>
         <div class="comment-meta mb-3">
-            <button class="comment-reply" onclick='$("#reply-box{{ $comment->id }}").toggle();'><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
+            <button class="comment-reply" onclick='$("#reply-box{{ $comment->id }}").toggle();'>
+                <i class="fa fa-reply-all" aria-hidden="true"></i> Reply
+            </button>
             <like
                 :likes-count="{{ count($comment->likes) }}"
                 :liked="{{ json_encode($comment->isLiked()) }}"
                 :item-id="{{ $comment->id }}"
                 item-type="comments"
                 :logged-in="{{ json_encode(Auth::check()) }}"
-                :user-id="{{ json_encode(Auth::user()->id) }}"
-            />
+                :user-id="{{ Auth::check() ? json_encode(Auth::user()->id) : '0' }}"
+            ></like>
+            <form class="dropdown-item" action="{{ url("posts/comment/{$comment->id}") }}" id="delete-comment-{{ $comment->id }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            <a onclick="document.getElementById('delete-comment-{{ $comment->id }}').submit();" class="ml-2">
+                <i class="fa fa-trash"></i>
+            </a>
         </div>
         <div class="comment-box add-comment reply-box m-0" id="reply-box{{ $comment->id }}">
             <div class="row">

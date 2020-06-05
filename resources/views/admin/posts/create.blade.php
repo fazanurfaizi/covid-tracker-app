@@ -15,7 +15,12 @@
                         </p>
                     </div>
                     <div class="panel-body">
-                        {!! Form::open(['url' => 'admin/posts', 'class' => 'form-horizontal', 'role' => 'form', 'file' => true, 'enctype'=>'multipart/form-data']) !!}
+                        {!! Form::open([
+                            'url' => 'admin/posts',
+                            'class' => 'form-horizontal',
+                            'file' => true,
+                            'enctype'=>'multipart/form-data'
+                        ]) !!}
                             @include('admin.posts._form')
                             <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
                                 <label for="image" class="col-md-2 control-label">Image</label>

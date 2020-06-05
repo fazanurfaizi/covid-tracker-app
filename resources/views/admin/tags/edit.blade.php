@@ -20,7 +20,6 @@
                                 'method' => 'PUT',
                                 'url' => "admin/tags/{$tag->id}",
                                 'class' => 'form-horizontal',
-                                'role' => 'form'
                             ]) !!}
                                 @include('admin.tags._form')
                                 <div class="form-group">

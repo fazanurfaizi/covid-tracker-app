@@ -38,6 +38,7 @@ class UserController extends Controller
      * @param \App\Models\User $user
      */
     public function permission(User $user) {
+        $this->authorize('permission', $user);
         $user->is_admin = !$user->is_admin;
         $user->save();
 

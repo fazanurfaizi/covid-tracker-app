@@ -20,7 +20,6 @@
                                 'method' => 'PUT',
                                 'url' => "admin/categories/{$category->id}",
                                 'class' => 'form-horizontal',
-                                'role' => 'form'
                             ]) !!}
                                 @include('admin.categories._form')
                                 <div class="form-group">

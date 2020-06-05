@@ -1,7 +1,7 @@
 <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-    {!! Form::label('title', 'Title', ['class' => 'col-md-2 control-label']) !!}
+    <label for="title" class="col-md-2 control-label">Title</label>
     <div class="col-md-12">
-        {!! Form::text('title', null, ['class' => 'form-control', 'required']) !!}
+        {!! Form::text('title', old('title'), ['class' => 'form-control', 'required']) !!}
         <span class="help-block">
             <strong>{{ $errors->first('title') }}</strong>
         </span>
@@ -9,9 +9,9 @@
 </div>
 
 <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
-    {!! Form::label('body', 'Body', ['class' => 'col-md-2 control-label']) !!}
+    <label for="body" class="col-md-2 control-label">Body</label>
     <div class="col-md-12">
-        {!! Form::textarea('body', null, [
+        {!! Form::textarea('body', old('body'), [
             'class' => 'form-control', 'id' => 'text-editor'
         ]) !!}
         <span class="help-block">
@@ -21,7 +21,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('category_id') ? 'has-error' : '' }}">
-    {!! Form::label('category_id', 'Category', ['class' => 'col-md-2 control-label']) !!}
+    <label for="category_id" class="col-md-2 control-label">Category</label>
     <div class="col-md-12">
         {!! Form::select('category_id', $categories, old('category_id'), ['class' => 'form-control']) !!}
         <span class="help-block">
@@ -39,7 +39,7 @@
 @endphp
 
 <div class="form-group {{ $errors->has('tags') ? ' has-error' : '' }}">
-    {!! Form::label('tags', 'Tag', ['class' => 'col-md-2 control-label']) !!}
+    <label for="tags" class="col-md-2 control-label">Tags</label>
     <div class="col-md-12">
         {!! Form::select('tags[]', $tags, $tag, ['class' => 'form-control select2-tags', 'multiple']) !!}
         <span class="help-block">
@@ -51,6 +51,12 @@
 @push('scripts')
     <script src="{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
     <script>
-        CKEDITOR.replace('text-editor');
+        CKEDITOR.replace('text-editor', {
+            fullPage: true,
+            allowedContent: true,
+            extraPlugins: [
+                'autogrow',
+            ],
+        });
     </script>
 @endpush

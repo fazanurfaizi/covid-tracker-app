@@ -20,7 +20,6 @@
                                 'method' => 'POST',
                                 'url' => 'admin/categories',
                                 'class' => 'form-horizontal',
-                                'role' => 'form'
                             ]) !!}
                                 @include('admin.categories._form')
                                 <div class="form-group">

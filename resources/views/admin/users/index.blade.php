@@ -21,15 +21,15 @@
                             <table class="table table-bordered" style="width: 90%">
                                 <thead>
                                     <tr>
-                                        <th scope="col" width="5%">Id</th>
-                                        <th scope="col" width="45%">Name</th>
-                                        <th scope="col" width="50%">Action</th>
+                                        <th scope="col" width="5%" class="text-center border">Id</th>
+                                        <th scope="col" width="45%" class="text-center border">Name</th>
+                                        <th scope="col" width="50%" class="text-center border">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($users as $user)
                                         <tr>
-                                            <td scope="row">{{ $user->id }}</td>
+                                            <td scope="row" class="text-center">{{ $user->id }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>
                                                 <div class="btn-group d-flex">

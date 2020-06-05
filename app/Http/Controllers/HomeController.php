@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::published()->latest()->limit(3)->get();
+        $posts = Post::published()->withCount('comments')->latest()->limit(3)->get();
         return view('app.pages.home', compact('posts'));
     }
 }

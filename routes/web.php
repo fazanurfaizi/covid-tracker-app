@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/profile/update', 'ProfileController@update')->name('profile.update');
     Route::put('/profile/password', 'ProfileController@password')->name('profile.password');
     Route::post('/posts/{post}/comment', 'CommentController@store')->name('posts.comment');
+    Route::post('/posts/comment/{comment}', 'CommentController@destroy')->name('posts.comment.destroy');
 });
 
 Route::get('/posts', 'PostController@index')->name('posts');

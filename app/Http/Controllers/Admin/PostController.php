@@ -116,6 +116,7 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        $this->authorize('update', $post);
         $post->update([
             'title' => $request->title,
             'body' => $request->body,
@@ -160,6 +161,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
         $post->delete();
 
         return redirect(url()->previous());

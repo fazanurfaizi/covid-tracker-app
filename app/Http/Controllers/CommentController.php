@@ -15,7 +15,14 @@ class CommentController extends Controller
         $comment->parent_id = $request->parent_id ?? null;
         $post->comments()->save($comment);
 
-        return response()->noContent();
+        return redirect()->back();
+    }
+
+    public function destroy(Comment $comment) {
+        $this->authorize('delete', $comment);
+        $comment->delete();
+
+        return redirect()->back();
     }
 
 }

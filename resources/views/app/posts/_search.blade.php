@@ -1,6 +1,6 @@
 <div class="justify-content-center mx-auto">
     <div class="container">
-        <form method="get" role="form" class="form-inline ml-3">
+        <form method="get" role="form" class="form-inline ml-md-4">
             <input type="text" name="search" value="{{ request()->get('search') }}" class="form-control form-control-sm mr-3 w-75" placeholder="Search" style="height: 35px;">
             <button type="submit" class="btn btn-sm btn-simple" style="height: 35px">
                 <i class="fa fa-search" aria-hidden="true"></i>

@@ -1,5 +1,5 @@
 <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
-    {!! Form::label('name', 'Name', ['class' => 'col-md-offset-2 control-label']) !!}
+    <label for="name" class="col-md-offset-2 control-label">Name</label>
     <div class="col-md-offset-2">
         {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}
         <span class="help-block">

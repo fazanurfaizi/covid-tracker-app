@@ -12,7 +12,10 @@ trait Likeable {
     }
 
     public function isLiked() {
-        return $this->likes->where('user_id', auth()->user()->id)->isNotEmpty();
+        if(Auth::check()) {
+            return $this->likes->where('user_id', auth()->user()->id)->isNotEmpty();
+        }
+        return false;
     }
 
     public function like($userId) {

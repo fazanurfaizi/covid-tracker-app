@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <div class="content">
             @if (session('success'))
                 <div class="alert alert-success" role="alert">
@@ -17,23 +17,21 @@
                 <div class="col-md-3 mt-3">
                     <div class="card card-user">
                         <div class="image">
-                            <img src="{{ asset('images/placeholder.png') }}" alt="...">
+                            <img src="{{ asset('images/user-background.jpg') }}" alt="...">
                         </div>
                         <div class="card-body">
                             <div class="author">
-                                <a href="#">
-                                    <img class="avatar border-gray" src="{{ asset('images/placeholder.png') }}" alt="...">
+                                <p>
+                                    <img class="avatar border-gray" src="{{ asset('paper/img/logo-small.png') }}" alt="...">
 
                                     <h5 class="title">{{ __(auth()->user()->name)}}</h5>
-                                </a>
+                                </p>
                                 <p class="text-bold">
                                 {{ __(auth()->user()->email)}}
                                 </p>
                             </div>
                             <p class="text-center">
-                                {{ __('I like the way you work it') }}
-                                <br> {{ __('No diggity') }}
-                                <br> {{ __('I wanna bag it up') }}
+                                {{ \Illuminate\Foundation\Inspiring::quote() }}
                             </p>
                         </div>
                     </div>
