@@ -20,12 +20,16 @@
                 :logged-in="{{ json_encode(Auth::check()) }}"
                 :user-id="{{ Auth::check() ? json_encode(Auth::user()->id) : '0' }}"
             ></like>
-            <form class="dropdown-item" action="{{ url("posts/comment/{$comment->id}") }}" id="delete-comment-{{ $comment->id }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-            <a onclick="document.getElementById('delete-comment-{{ $comment->id }}').submit();" class="ml-2">
-                <i class="fa fa-trash"></i>
-            </a>
+            @auth
+                @if (Auth::user()->id === $comment->user_id)
+                    <form class="dropdown-item" action="{{ url("posts/comment/{$comment->id}") }}" id="delete-comment-{{ $comment->id }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <a onclick="document.getElementById('delete-comment-{{ $comment->id }}').submit();" class="ml-2">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                @endif
+            @endauth
         </div>
         <div class="comment-box add-comment reply-box m-0" id="reply-box{{ $comment->id }}">
             <div class="row">

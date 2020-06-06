@@ -71,7 +71,6 @@
     <script src="{{ asset('plugins/chart-js/chartjs.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap-notify.js') }}"></script>
     <script src="{{ asset('paper/js/paper-dashboard.min.js?v=2.0.0') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/covid.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')

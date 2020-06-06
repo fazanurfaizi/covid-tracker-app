@@ -24,8 +24,9 @@
                         <div class="card-footer">
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-refresh"></i>
-                                Update now
+                                <i class="fa fa-refresh" style="cursor: pointer" onclick="location.reload()">
+                                    Update now
+                                </i>
                             </div>
                         </div>
                     </div>
@@ -50,7 +51,9 @@
                         <div class="card-footer ">
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-refresh"></i> Update now
+                                <i class="fa fa-refresh" style="cursor: pointer" onclick="location.reload()">
+                                    Update now
+                                </i>
                             </div>
                         </div>
                     </div>
@@ -75,7 +78,9 @@
                         <div class="card-footer ">
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-refresh"></i> Update now
+                                <i class="fa fa-refresh" style="cursor: pointer" onclick="location.reload()">
+                                    Update now
+                                </i>
                             </div>
                         </div>
                     </div>
@@ -100,7 +105,9 @@
                         <div class="card-footer ">
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-refresh"></i> Update now
+                                <i class="fa fa-refresh" style="cursor: pointer" onclick="location.reload()">
+                                    Update now
+                                </i>
                             </div>
                         </div>
                     </div>
@@ -110,21 +117,15 @@
                 <div class="col-md-4">
                     <div class="card ">
                         <div class="card-header ">
-                            <h5 class="card-title">Email Statistics</h5>
-                            <p class="card-category">Last Campaign Performance</p>
+                            <h5 class="card-title">Covid-19 Statistics</h5>
                         </div>
                         <div class="card-body ">
-                            <canvas id="chartEmail"></canvas>
+                            <canvas id="covidPie" width="400" height="250"></canvas>
                         </div>
                         <div class="card-footer ">
-                            <div class="legend">
-                                <i class="fa fa-circle text-success"></i> Recovered
-                                <i class="fa fa-circle text-warning"></i> Active Case
-                                <i class="fa fa-circle text-danger"></i> Deaths
-                            </div>
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-calendar"></i> Number of emails sent
+                                <i class="fa fa-ambulance"></i> Number of Covid-19's cases
                             </div>
                         </div>
                     </div>
@@ -133,21 +134,17 @@
                     <div class="card ">
                         <div class="card-header ">
                             <h5 class="card-title">Covid-19 Tracker</h5>
-                            <p class="card-category">Tracking new covid-19</p>
                         </div>
                         <div class="card-body">
-                            <canvas id="chartHours" width="400" height="100"></canvas>
+                            <canvas id="covidChart" width="400" height="130"></canvas>
                         </div>
                         <div class="card-footer ">
                             <div class="legend">
                                 <i class="fa fa-circle text-success"></i> Recovered
-                                <i class="fa fa-circle text-warning"></i> Active Case
+                                <i class="fa fa-circle text-warning"></i> Confirmed
                                 <i class="fa fa-circle text-danger"></i> Deaths
                             </div>
                             <hr>
-                            <div class="stats">
-                                <i class="fa fa-circle-thin"></i> New Updates
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -206,8 +203,8 @@
 @push('scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-            demo.initChartsPages();
-            getData();
+            charts.initChartsPages();
+            setCovid();
         });
     </script>
 @endpush

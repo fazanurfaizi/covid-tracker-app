@@ -36,7 +36,6 @@
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/image.js') }}"></script>
     <script src="{{ asset('plugins/popper/popper.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery/perfect-scrollbar.jquery.min.js') }}"></script>

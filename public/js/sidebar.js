@@ -8,12 +8,12 @@ $(document).ready(function() {
     fixed_plugin_open = $(
         ".sidebar .sidebar-wrapper .nav li.active a p"
     ).html();
-    // if( window_width > 767 && fixed_plugin_open == 'Dashboard' ){
-    //     if($('.fixed-plugin .dropdown').hasClass('show-dropdown')){
-    //         $('.fixed-plugin .dropdown').addClass('show');
-    //     }
-    //
-    // }
+    if( window_width > 767 && fixed_plugin_open == 'Dashboard' ){
+        if($('.fixed-plugin .dropdown').hasClass('show-dropdown')){
+            $('.fixed-plugin .dropdown').addClass('show');
+        }
+
+    }
     $(".fixed-plugin a").click(function(event) {
         // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
         if ($(this).hasClass("switch-trigger")) {
