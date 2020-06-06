@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="content">
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -19,6 +20,12 @@
                             <a class="btn btn-app" href="{{ route('admin.posts.create') }}">Create New Post</a>
                         </p>
                     </div>
+                    <form method="get" role="form" class="form-inline ml-3">
+                        <input type="text" name="search" value="{{ request()->get('title') }}" class="form-control form-control-sm mr-3 w-75" placeholder="Search" style="height: 35px;">
+                        <button type="submit" class="btn btn-sm btn-simple" style="height: 35px">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </form>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered mb-3" style="width: 98%">
@@ -69,7 +76,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        {!! $posts->links() !!}
+                        {!! $posts->appends(['search' => request()->get('search')])->links() !!}
                     </div>
                 </div>
             </div>

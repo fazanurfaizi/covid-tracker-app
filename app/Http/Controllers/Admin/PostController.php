@@ -26,17 +26,10 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('title')) {
-            $posts = Post::where('title', 'LIKE', "%$request->title%")->withCount('likes', 'comments')->latest()->paginate(10);
-            $posts->each(function($post) {
-                $post->tags;
-            });
-        } else {
-            $posts = Post::withCount('likes', 'comments')->latest()->paginate(10);
-            $posts->each(function($post) {
-                $post->tags;
-            });
-        }
+        $posts = Post::when($request->search, function($query) use ($request) {
+            $search = $request->search;
+            return $query->where('title', 'like', "%$search%");
+        })->latest()->paginate(10);
 
         return view('admin.posts.index', compact('posts'));
     }

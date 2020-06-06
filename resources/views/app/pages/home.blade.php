@@ -120,13 +120,7 @@
                             <h5 class="card-title">Covid-19 Statistics</h5>
                         </div>
                         <div class="card-body ">
-                            <canvas id="covidPie" width="400" height="250"></canvas>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-ambulance"></i> Number of Covid-19's cases
-                            </div>
+                            <canvas id="covidPie" width="400" height="320"></canvas>
                         </div>
                     </div>
                 </div>
@@ -136,15 +130,7 @@
                             <h5 class="card-title">Covid-19 Tracker</h5>
                         </div>
                         <div class="card-body">
-                            <canvas id="covidChart" width="400" height="130"></canvas>
-                        </div>
-                        <div class="card-footer ">
-                            <div class="legend">
-                                <i class="fa fa-circle text-success"></i> Recovered
-                                <i class="fa fa-circle text-warning"></i> Confirmed
-                                <i class="fa fa-circle text-danger"></i> Deaths
-                            </div>
-                            <hr>
+                            <canvas id="covidChart" width="400" height="150"></canvas>
                         </div>
                     </div>
                 </div>

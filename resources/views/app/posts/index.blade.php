@@ -16,7 +16,7 @@
                             <div class="container">
                                 <h6 class="card-title mt-3 text-dark">{{ str_limit($post->title, 30) }}</h6>
                                 <div class="meta">
-                                    <p>{{ str_limit($post->body, 75) }}</p>
+                                    <p>{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $post->body), 75) }}</p>
                                     @forelse ($post->tags as $tag)
                                         <a href="{{ url("tags/{$tag->slug}/posts") }}">#{{ $tag->name }}</a>
                                     @empty

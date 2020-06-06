@@ -16,12 +16,18 @@
                     </div>
                     <div class="card-body">
                         <div class="panel-body">
-                            {!! Form::open([
-                                'method' => 'POST',
-                                'url' => 'admin/tags',
-                                'class' => 'form-horizontal',
-                            ]) !!}
-                                @include('admin.categories._form')
+                            <form action="{{ url('admin/tags') }}" method="post" class="form-horizontal">
+                                @csrf
+                                @method('POST')
+                                <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
+                                    <label for="name" class="col-md-offset-2 control-label">Name</label>
+                                    <div class="col-md-offset-2">
+                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control">
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="col-md-offset-2">
                                         <button type="submit" class="btn btn-primary">
@@ -29,7 +35,7 @@
                                         </button>
                                     </div>
                                 </div>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                     </div>
                 </div>

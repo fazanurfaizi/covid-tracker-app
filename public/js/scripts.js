@@ -22,6 +22,7 @@ $("#back-to-top").click(function() {
  * End of scroll to top
  */
 
+
 /**
  * Image preview
  */
@@ -49,9 +50,11 @@ $("#image").change(function() {
  * End of Image preview
  */
 
+
 // Custom Console Log
-var css = "padding: 60px;text-align: center; background: transparent ; color: green; font-size: 50px;"
-console.log("%cWelcome to Covid-19 Tracker App Console", css);
+var css = "padding: 60px;text-align: center; background: transparent; color: green; font-size: 64px;"
+console.log("%cWelcome to Covid-19 Tracker App", css);
+
 
 /**
  * ChartJS Setup
@@ -84,19 +87,33 @@ function turnAngka(number) {
 }
 
 async function getLiveData() {
-    const response = await fetch("https://api.covid19api.com/live/country/id");
+
+    const response = await fetch("https://api.covid19api.com/country/id");
     const data = await response.json();
     const date = [];
     const confirmed = [];
     const deaths = [];
     const recovered = [];
     for(var i = 0; i < data.length; i++) {
-        date.push(new Date(data[i].Date).toDateString());
+        date.push(getFormattedDate(new Date(data[i].Date)));
+        //date.push(new Date(data[i].Date).toDateString("DD MM YYYY"));
         confirmed.push(data[i].Confirmed);
         deaths.push(data[i].Deaths);
         recovered.push(data[i].Recovered);
     }
     return { date, confirmed, deaths, recovered };
+}
+
+function getFormattedDate(date) {
+    var year = date.getFullYear();
+
+    var month = (1 + date.getMonth()).toString();
+    month = month.length > 1 ? month : "0" + month;
+
+    var day = date.getDate().toString();
+    day = day.length > 1 ? day : "0" + day;
+
+    return month + "-" + day + "-" + year;
 }
 
 charts = {
@@ -105,6 +122,20 @@ charts = {
 
         const data = await getData();
         const liveData = await getLiveData();
+        const liveDate = [];
+        const liveConfirmed = [];
+        const liveDeaths = [];
+        const liveRecovered = [];
+        for(var i = liveData.date.length - 1; i >= liveData.date.length - 15; i--) {
+            liveDate.push(liveData.date[i]);
+            liveConfirmed.push(liveData.confirmed[i]);
+            liveDeaths.push(liveData.deaths[i]);
+            liveRecovered.push(liveData.recovered[i]);
+        }
+        liveDate.reverse();
+        liveConfirmed.reverse();
+        liveDeaths.reverse();
+        liveRecovered.reverse();
 
         ctx = document.getElementById("covidChart").getContext("2d");
 
@@ -112,7 +143,7 @@ charts = {
             type: "bar",
 
             data: {
-                labels: liveData.date,
+                labels: liveDate,
                 datasets: [
                     {
                         // Recovered
@@ -122,7 +153,7 @@ charts = {
                         pointRadius: 0,
                         pointHoverRadius: 0,
                         borderWidth: 3,
-                        data: liveData.recovered
+                        data: liveRecovered
                     },
                     {
                         // Active Case / Confirmed
@@ -132,7 +163,7 @@ charts = {
                         pointRadius: 0,
                         pointHoverRadius: 0,
                         borderWidth: 3,
-                        data: liveData.confirmed
+                        data: liveConfirmed
                     },
                     {
                         // Deaths
@@ -142,7 +173,7 @@ charts = {
                         pointRadius: 0,
                         pointHoverRadius: 0,
                         borderWidth: 3,
-                        data: liveData.deaths
+                        data: liveDeaths
                     }
                 ]
             },
@@ -160,11 +191,11 @@ charts = {
                         {
                             ticks: {
                                 fontColor: "#9f9f9f",
-                                beginAtZero: false,
+                                beginAtZero: true,
                                 maxTicksLimit: 5
                             },
                             gridLines: {
-                                drawBorder: false,
+                                drawBorder: true,
                                 zeroLineColor: "#ccc",
                                 color: "rgba(255,255,255,0.05)"
                             }
@@ -174,10 +205,10 @@ charts = {
                         {
                             barPercentage: 1.6,
                             gridLines: {
-                                drawBorder: false,
+                                drawBorder: true,
                                 color: "rgba(255,255,255,0.1)",
                                 zeroLineColor: "transparent",
-                                display: false
+                                display: true
                             },
                             ticks: {
                                 padding: 20,
