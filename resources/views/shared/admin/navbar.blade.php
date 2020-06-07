@@ -22,8 +22,8 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-gear"></i>
-                        <p>
-                            <span class="d-lg-none d-md-block">{{ Auth::user()->name }}</span>
+                        <p style="cursor: pointer">
+                            <span>{{ Auth::user()->name }}</span>
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">

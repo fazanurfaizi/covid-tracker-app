@@ -22,15 +22,13 @@ return [
     ],
     'confirm' => [
         'title' => 'Are you sure?',
-        'button' => [
-            'cancel' => 'No, Cancel it!',
-            'yes' => 'Yes, I am sure!'
-        ],
-        'canceled' => 'Canceled',
-        'text' => [
-            'delete' => 'You will delete this',
-            'update' => 'You will update this'
-        ]
+        'cancel' => 'Canceled',
+        'delete' => 'You will delete',
+        'update' => 'You will update'
+    ],
+    'buttons' => [
+        'cancel' => 'No, Cancel it!',
+        'yes' => 'Yes, I am sure!'
     ]
 ];
 

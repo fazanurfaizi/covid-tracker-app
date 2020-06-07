@@ -22,38 +22,38 @@ $("#back-to-top").click(function() {
  * End of scroll to top
  */
 
+ $(document).ready(function() {
+     /**
+      * Image preview
+      */
+     $("#image").on("change", function() {
+         var fileName = $(this).val();
+         $(this)
+             .next(".custom-file-label")
+             .html(fileName);
+     });
 
-/**
- * Image preview
- */
-$("#image").on("change", function() {
-    var fileName = $(this).val();
-    $(this)
-        .next(".custom-file-label")
-        .html(fileName);
-});
+     function readUrl(url) {
+         if (url.files && url.files[0]) {
+             var reader = new FileReader();
+             reader.onload = function(e) {
+                 $("#image-preview").attr("src", e.target.result);
+             };
+             reader.readAsDataURL(url.files[0]);
+         }
+     }
 
-function readUrl(url) {
-    if (url.files && url.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            $("#image-preview").attr("src", e.target.result);
-        };
-        reader.readAsDataURL(url.files[0]);
-    }
-}
+     $("#image").change(function() {
+         readUrl(this);
+     });
+     /**
+      * End of Image preview
+      */
 
-$("#image").change(function() {
-    readUrl(this);
-});
-/**
- * End of Image preview
- */
-
-
-// Custom Console Log
-var css = "padding: 60px;text-align: center; background: transparent; color: green; font-size: 64px;"
-console.log("%cWelcome to Covid-19 Tracker App", css);
+    // Custom Console Log
+    var css = "padding: 60px;text-align: center; background: transparent; color: green; font-size: 64px;"
+    console.log("%cWelcome to Covid-19 Tracker App", css);
+ });
 
 
 /**

@@ -40,10 +40,13 @@
                                                 <div class="btn-group d-flex">
                                                     <a href="{{ url("admin/categories/{$category->id}/edit") }}" class="btn btn-secondary btn-xs btn-info w-100">
                                                     Edit
-                                                    </a>
-                                                    <a href="{{ url("admin/categories/{$category->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $category->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-secondary btn-xs btn-danger w-100" id="deleteBtn">
+                                                    <a class="btn btn-secondary btn-xs btn-danger w-100" onclick="deleteCategory({{ $category->id }})">
                                                         Delete
                                                     </a>
+                                                    <form id="category-delete-{{ $category->id }}" action="{{ url("admin/categories/{$category->id}") }}" method="post" style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -64,3 +67,37 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function deleteCategory(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will delete this",
+                icon: 'warning',
+                buttons: [
+                    "No, Cancel it!",
+                    "Yes, I am sure!"
+                ],
+                dangerMode: true
+            }).then(function(confirm) {
+                if(confirm) {
+                    swal({
+                        title: "Delete Successfully",
+                        message: "You canceled to delete this",
+                        icon: 'success',
+                        time: 200
+                    }).then(function() {
+                        $(`#category-delete-${id}`).submit();
+                    })
+                } else {
+                    swal(
+                        "Canceled",
+                        "You canceled to delete this",
+                        "error"
+                    );
+                }
+            })
+        }
+    </script>
+@endpush

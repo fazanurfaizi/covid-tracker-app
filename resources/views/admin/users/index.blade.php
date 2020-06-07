@@ -33,19 +33,20 @@
                                             <td>{{ $user->name }}</td>
                                             <td>
                                                 <div class="btn-group d-flex">
-                                                    @php
-                                                        if($user->permission) {
-                                                            $label = 'Admin';
-                                                        } else {
-                                                            $label = 'Member';
-                                                        }
-                                                    @endphp
-                                                    <a href="{{ url("admin/users/{$user->id}/permission") }}" data-method="PUT" data-token="{{ csrf_token() }}" data-name="{{ $user->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.update')" data-message="@lang('admin.update.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.update.callback') | @lang('admin.update.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-secondary btn-xs btn-warning w-100">
-                                                        {{ $label }}
+                                                    <a class="btn btn-secondary btn-xs btn-warning w-100" onclick="updateUser({{ $user->id }})">
+                                                        {{ $user->permission ? 'Admin' : 'Member' }}
                                                     </a>
-                                                    <a href="{{ url("admin/users/{$user->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $user->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-secondary btn-xs btn-danger w-100" id="deleteBtn">
+                                                    <form id="user-update-{{ $user->id }}" action="{{ url("admin/users/{$user->id}/permission") }}" method="post" style="display: none;">
+                                                        @csrf
+                                                        @method('PUT')
+                                                    </form>
+                                                    <a class="btn btn-secondary btn-xs btn-danger w-100" onclick="deleteUser({{ $user->id }})">
                                                         Delete
                                                     </a>
+                                                    <form id="user-delete-{{ $user->id }}" action="{{ url("admin/users/{$user->id}") }}" method="post" style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -66,3 +67,67 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function deleteUser(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will delete this",
+                icon: 'warning',
+                buttons: [
+                    "No, Cancel it!",
+                    "Yes, I am sure!"
+                ],
+                dangerMode: true
+            }).then(function(confirm) {
+                if(confirm) {
+                    swal({
+                        title: "Delete Successfully",
+                        message: "You canceled to delete this",
+                        icon: 'success',
+                        time: 200
+                    }).then(function() {
+                        $(`#user-delete-${id}`).submit();
+                    })
+                } else {
+                    swal(
+                        "Canceled",
+                        "You canceled to delete this",
+                        "error"
+                    );
+                }
+            })
+        }
+
+        function updateUser(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will update this",
+                icon: 'warning',
+                buttons: [
+                    "No, Cancel it!",
+                    "Yes, I am sure!"
+                ],
+                dangerMode: true
+            }).then(function(confirm) {
+                if(confirm) {
+                    swal({
+                        title: "Update Successfully",
+                        message: "You canceled to update this",
+                        icon: 'success',
+                        time: 200
+                    }).then(function() {
+                        $(`#user-update-${id}`).submit();
+                    })
+                } else {
+                    swal(
+                        "Canceled",
+                        "You canceled to update this",
+                        "error"
+                    );
+                }
+            })
+        }
+    </script>
+@endpush

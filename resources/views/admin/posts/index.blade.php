@@ -47,22 +47,23 @@
                                             <td class="text-center">{{ $post->category->name ?? '' }}</td>
                                             <td>
                                                 <div class="btn-group d-flex">
-                                                    @php
-                                                        if($post->published) {
-                                                            $label = 'Draft';
-                                                        } else {
-                                                            $label = 'Publish';
-                                                        }
-                                                    @endphp
-                                                    <a href="{{ url("admin/posts/{$post->id}/publish") }}" data-method="PUT" data-token="{{ csrf_token() }}" data-name="{{ $post->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.update')" data-message="@lang('admin.update.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.update.callback') | @lang('admin.update.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-secondary btn-xs btn-warning w-100">
-                                                        {{ $label }}
+                                                    <a class="btn btn-secondary btn-xs btn-warning w-100" onclick="updatePost({{ $post->id }})">
+                                                        {{ $post->published ? 'Draft' : 'Publish' }}
                                                     </a>
                                                     <a href="{{ url("admin/posts/{$post->id}/edit") }}" class="btn btn-secondary btn-xs btn-info w-100">
                                                         Edit
                                                     </a>
-                                                    <a href="{{ url("admin/posts/{$post->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $post->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-secondary btn-xs btn-danger w-100">
+                                                    <a class="btn btn-secondary btn-xs btn-danger w-100" onclick="deletePost({{ $post->id }})">
                                                         Delete
                                                     </a>
+                                                    <form id="post-update-{{ $post->id }}" action="{{ url("admin/posts/{$post->id}/publish") }}" method="post" style="display: none;">
+                                                        @csrf
+                                                        @method('PUT')
+                                                    </form>
+                                                    <form id="post-delete-{{ $post->id }}" action="{{ url("admin/posts/{$post->id}") }}" method="post" style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -83,3 +84,67 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function deletePost(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will delete this",
+                icon: 'warning',
+                buttons: [
+                    "No, Cancel it!",
+                    "Yes, I am sure!"
+                ],
+                dangerMode: true
+            }).then(function(confirm) {
+                if(confirm) {
+                    swal({
+                        title: "Delete Successfully",
+                        message: "You canceled to delete this",
+                        icon: 'success',
+                        time: 200
+                    }).then(function() {
+                        $(`#post-delete-${id}`).submit();
+                    })
+                } else {
+                    swal(
+                        "Canceled",
+                        "You canceled to delete this",
+                        "error"
+                    );
+                }
+            })
+        }
+
+        function updatePost(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will update this",
+                icon: 'warning',
+                buttons: [
+                    "No, Cancel it!",
+                    "Yes, I am sure!"
+                ],
+                dangerMode: true
+            }).then(function(confirm) {
+                if(confirm) {
+                    swal({
+                        title: "Update Successfully",
+                        message: "You canceled to update this",
+                        icon: 'success',
+                        time: 200
+                    }).then(function() {
+                        $(`#post-update-${id}`).submit();
+                    })
+                } else {
+                    swal(
+                        "Canceled",
+                        "You canceled to update this",
+                        "error"
+                    );
+                }
+            })
+        }
+    </script>
+@endpush

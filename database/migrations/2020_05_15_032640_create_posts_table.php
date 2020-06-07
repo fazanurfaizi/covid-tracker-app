@@ -23,7 +23,6 @@ class CreatePostsTable extends Migration
             $table->bigInteger('category_id')->unsigned()->nullable();
             $table->boolean('is_published')->default(false);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

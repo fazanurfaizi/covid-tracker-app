@@ -155,6 +155,9 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $this->authorize('delete', $post);
+        if($post->image !== null) {
+            unlink($this->uploadPath . $post->image);
+        }
         $post->delete();
 
         return redirect(url()->previous());

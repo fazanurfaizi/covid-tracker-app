@@ -39,9 +39,13 @@
                                                     <a href="{{ url("admin/tags/{$tag->id}/edit") }}" class="btn btn-secondary btn-xs btn-info w-100">
                                                         Edit
                                                     </a>
-                                                    <a href="{{ url("admin/tags/{$tag->id}") }}" data-id="{{ $tag->id }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-name="{{ $tag->name }}" data-confirm="@lang('admin.confirm.title') | @lang('admin.confirm.text.delete')" data-message="@lang('admin.delete.success')" data-button='@lang('admin.confirm.button.yes') | @lang('admin.confirm.button.cancel')' data-callback="@lang('admin.delete.callback') | @lang('admin.delete.canceled')" data-canceled="@lang('admin.confirm.canceled')" class="btn btn-secondary btn-xs btn-danger w-100" id="deleteBtn">
+                                                    <a class="btn btn-secondary btn-xs btn-danger w-100" onclick="deleteTag({{ $tag->id }})">
                                                         Delete
                                                     </a>
+                                                    <form id="tag-delete-{{ $tag->id }}" action="{{ url("admin/tags/{$tag->id}") }}" method="post" style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -62,3 +66,37 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function deleteTag(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will delete this",
+                icon: 'warning',
+                buttons: [
+                    "No, Cancel it!",
+                    "Yes, I am sure!"
+                ],
+                dangerMode: true
+            }).then(function(confirm) {
+                if(confirm) {
+                    swal({
+                        title: "Delete Successfully",
+                        message: "You canceled to delete this",
+                        icon: 'success',
+                        time: 200
+                    }).then(function() {
+                        $(`#tag-delete-${id}`).submit();
+                    })
+                } else {
+                    swal(
+                        "Canceled",
+                        "You canceled to delete this",
+                        "error"
+                    );
+                }
+            })
+        }
+    </script>
+@endpush

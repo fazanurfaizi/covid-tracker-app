@@ -24,19 +24,6 @@
                         ])!!}
                             @include('admin.posts._form')
                             <div class="form-group">
-                                <div class="row">
-                                    <label for="image" class="col-md-3">Gambar</label>
-                                    <div class="col-md-6">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="image" name="image" value="{{ old('image') }}">
-                                            <label class="custom-file-label" for="image">{{ $post->image }}</label>
-                                        </div>
-                                        <img src="{{ $post->imageUrl }}" alt="Image" id="image-preview" width="100%" height="512" class="mt-2">
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <div class="col-md-8 col-md-offset-2">
                                     <button type="submit" class="btn btn-primary">
                                         Update

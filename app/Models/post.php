@@ -67,10 +67,6 @@ class Post extends Model
         return $query->where('is_published', false);
     }
 
-    public function scopeLatest(Builder $query) {
-        return $query->orderBy('created_at', 'desc');
-    }
-
     /**
      * Custom Post Model Attributes
      */

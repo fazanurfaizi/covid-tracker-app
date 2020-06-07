@@ -27,7 +27,7 @@
 
     <div class="wrapper">
         @include('shared.admin.navbar')
-        <div class="main-panel">
+        <div class="main-panel" id="app">
             @include('shared.admin.sidebar')
             @yield('content')
         </div>

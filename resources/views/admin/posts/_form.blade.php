@@ -48,6 +48,20 @@
     </div>
 </div>
 
+<div class="form-group">
+    <div class="row">
+        <label for="image" class="col-md-3">Gambar</label>
+        <div class="col-md-6">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="image" name="image" value="{{ old('image') }}">
+                <label class="custom-file-label" for="image">{{ isset($post) ? $post->image : null }}</label>
+            </div>
+            <img src="{{ isset($post) ? $post->imageUrl : asset('images/placeholder.png') }}" alt="Image" id="image-preview" width="100%" height="384" class="mt-2">
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
 @push('scripts')
     <script src="{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
     <script>
