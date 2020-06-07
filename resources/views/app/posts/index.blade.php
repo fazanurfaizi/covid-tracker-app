@@ -39,12 +39,20 @@
                     </div>
                 </div>
             @empty
-                <div class="panel panel-default">
-                    <div class="panel-heading">Not Found!!</div>
-                    <div class="panel-body">
-                        <p>Sorry! No post found.</p>
-                    </div>
+            <div id="no-post-container">
+                <div id="error-box">
+                <div class="dot"></div>
+                <div class="dot two"></div>
+                <div class="face2">
+                    <div class="eye"></div>
+                    <div class="eye right"></div>
+                    <div class="mouth sad"></div>
                 </div>
+                <div class="shadow move"></div>
+                <div class="post-pesan"><h1 class="teks-besar alert">Sorry!</h1><p class="teks-pesan">No post found</p></div>
+                <button class="button-box"><h1 class="teks-besar red">new search!</h1></button>
+                </div>
+            </div>
             @endforelse
         </div>
         <div class="mx-auto mt-3 mb-2" style="width: 200px;">
