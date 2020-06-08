@@ -7,17 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Traits\Likeable;
 use Carbon\Carbon;
-use App\Scopes\PostedScope;
 
 class Post extends Model
 {
 
     use Likeable;
-
-    protected static function boot() {
-        parent::boot();
-        static::addGlobalScope(new PostedScope);
-    }
 
     protected $fillable = [
         'title', 'body', 'image',
