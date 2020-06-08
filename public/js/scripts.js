@@ -55,7 +55,6 @@ $("#back-to-top").click(function() {
     console.log("%cWelcome to Covid-19 Tracker App", css);
  });
 
-
 /**
  * ChartJS Setup
  */
@@ -88,7 +87,7 @@ function turnAngka(number) {
 
 async function getLiveData() {
 
-    const response = await fetch("https://api.covid19api.com/country/id");
+    const response = await fetch("https://api.covid19api.com/live/country/id");
     const data = await response.json();
     const date = [];
     const confirmed = [];
@@ -113,7 +112,7 @@ function getFormattedDate(date) {
     var day = date.getDate().toString();
     day = day.length > 1 ? day : "0" + day;
 
-    return month + "-" + day + "-" + year;
+    return day + "-" + month + "-" + year;
 }
 
 charts = {

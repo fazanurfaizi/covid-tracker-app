@@ -118,6 +118,7 @@
                     <div class="card ">
                         <div class="card-header ">
                             <h5 class="card-title">Covid-19 Statistics</h5>
+                            <span>World</span>
                         </div>
                         <div class="card-body ">
                             <canvas id="covidPie" width="400" height="320"></canvas>
@@ -128,6 +129,7 @@
                     <div class="card ">
                         <div class="card-header ">
                             <h5 class="card-title">Covid-19 Tracker</h5>
+                            <span>Indonesia</span>
                         </div>
                         <div class="card-body">
                             <canvas id="covidChart" width="400" height="150"></canvas>

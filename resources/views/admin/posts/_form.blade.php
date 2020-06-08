@@ -12,7 +12,7 @@
     <label for="body" class="col-md-2 control-label">Body</label>
     <div class="col-md-12">
         {!! Form::textarea('body', old('body'), [
-            'class' => 'form-control', 'id' => 'text-editor'
+            'class' => 'form-control', 'style' => 'min-height: 200px'
         ]) !!}
         <span class="help-block">
             <strong>{{ $errors->first('body') }}</strong>
@@ -49,28 +49,13 @@
 </div>
 
 <div class="form-group">
-    <div class="row">
-        <label for="image" class="col-md-3">Gambar</label>
-        <div class="col-md-6">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="image" name="image" value="{{ old('image') }}">
-                <label class="custom-file-label" for="image">{{ isset($post) ? $post->image : null }}</label>
-            </div>
-            <img src="{{ isset($post) ? $post->imageUrl : asset('images/placeholder.png') }}" alt="Image" id="image-preview" width="100%" height="384" class="mt-2">
+    <label for="image" class="col-md-2 control-label">Gambar</label>
+    <div class="col-md-6">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="image" name="image" value="{{ old('image') }}">
+            <label class="custom-file-label" for="image">{{ isset($post) ? $post->image : null }}</label>
         </div>
-        <div class="clearfix"></div>
+        <img src="{{ isset($post) ? $post->imageUrl : asset('images/placeholder.png') }}" alt="Image" id="image-preview" width="100%" height="384" class="mt-2">
     </div>
+    <div class="clearfix"></div>
 </div>
-
-@push('scripts')
-    <script src="{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
-    <script>
-        CKEDITOR.replace('text-editor', {
-            fullPage: true,
-            allowedContent: true,
-            extraPlugins: [
-                'autogrow',
-            ],
-        });
-    </script>
-@endpush

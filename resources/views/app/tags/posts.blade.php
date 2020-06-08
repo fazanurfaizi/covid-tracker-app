@@ -16,7 +16,6 @@
                             <div class="container">
                                 <div class="card-title mt-3">{{ $post->title }}</div>
                                 <div class="meta">
-                                    <p>{{ str_limit($post->body, 75) }}</p>
                                     <p>
                                         Tags:
                                         @forelse ($post->tags as $tag)
