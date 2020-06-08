@@ -43,7 +43,7 @@
                             <div class="form-group {{ $errors->has('category_id') ? 'has-error' : '' }}">
                                 <label for="category_id" class="col-md-2 control-label">Category</label>
                                 <div class="col-md-12">
-                                    {!! Form::select('category_id', $categories, old('category_id'), ['class' => 'form-control']) !!}
+                                    {!! Form::select('category_id', $categories, $post->category_id, ['class' => 'form-control']) !!}
                                     <span class="help-block">
                                         <strong>{{ $errors->first('category_id') }}</strong>
                                     </span>
