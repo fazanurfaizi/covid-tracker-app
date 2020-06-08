@@ -41,6 +41,9 @@
     <script src="{{ asset('plugins/jquery/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap-notify.js') }}"></script>
     <script src="{{ asset('paper/js/paper-dashboard.min.js?v=2.0.0') }}" type="text/javascript"></script>
+    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.2.1/plugins/autoresize/plugin.min.js"></script>
+    <script src="{{ asset('js/editor.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

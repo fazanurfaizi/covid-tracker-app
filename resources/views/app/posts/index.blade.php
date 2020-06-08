@@ -24,32 +24,44 @@
                                 </div>
                                 <div class="card-text">
                                     <span class="btn btn-sm btn-success">By: {{ $post->user->name }}</span>
-                                    @if ($post->category)
-                                        <span class="btn btn-sm btn-info">{{ $post->category->name }}</span>
-                                    @endif
-                                    <a href="{{ url("posts/{$post->slug}") }}" class="btn btn-secondary float-right btn-sm">
-                                        Show
-                                    </a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
+                            <div class="container">
+                                @if ($post->category)
+                                    <form method="get" role="form" style="display: none;" id="category-post-{{ $post->id }}">
+                                        <input type="hidden" name="category" value="{{ $post->category->slug }}">
+                                    </form>
+                                    <span class="btn btn-sm btn-info" onclick='event.preventDefault(); document.getElementById("category-post-{{ $post->id }}").submit();'>
+                                        {{ $post->category->name }}
+                                    </span>
+                                @endif
+                                <a href="{{ url("posts/{$post->slug}") }}" class="btn btn-secondary float-right btn-sm">
+                                    Show
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             @empty
             <div id="no-post-container">
                 <div id="error-box">
-                <div class="dot"></div>
-                <div class="dot two"></div>
-                <div class="face2">
-                    <div class="eye"></div>
-                    <div class="eye right"></div>
-                    <div class="mouth sad"></div>
-                </div>
-                <div class="shadow move"></div>
-                <div class="post-pesan"><h1 class="teks-besar alert">Sorry!</h1><p class="teks-pesan">No post found</p></div>
-                <button class="button-box"><h1 class="teks-besar red">new search!</h1></button>
+                    <div class="dot"></div>
+                    <div class="dot two"></div>
+                    <div class="face2">
+                        <div class="eye"></div>
+                        <div class="eye right"></div>
+                        <div class="mouth sad"></div>
+                    </div>
+                    <div class="shadow move"></div>
+                    <div class="post-pesan">
+                        <h1 class="teks-besar alert">Sorry!</h1>
+                        <p class="teks-pesan">No post found</p>
+                    </div>
+                    <button class="button-box">
+                        <h1 class="teks-besar red">new search!</h1>
+                    </button>
                 </div>
             </div>
             @endforelse

@@ -14,7 +14,7 @@
                 <p>Posted on {{ $post->created_at->diffForHumans() }}</p>
                 <hr>
                 {{-- Content --}}
-                <p>{{ $post->body }}</p>
+                <p>{!! $post->body !!}</p>
                 {{-- Content --}}
                 <hr>
                 <p class="mt-3">

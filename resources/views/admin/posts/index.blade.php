@@ -47,8 +47,15 @@
                                             <td class="text-center">{{ $post->category->name ?? '' }}</td>
                                             <td>
                                                 <div class="btn-group d-flex">
-                                                    <a class="btn btn-secondary btn-xs btn-warning w-100" onclick="updatePost({{ $post->id }})">
-                                                        {{ $post->published ? 'Draft' : 'Publish' }}
+                                                    @php
+                                                        if($post->published) {
+                                                            $label = 'Draft';
+                                                        } else {
+                                                            $label = 'Publish';
+                                                        }
+                                                    @endphp
+                                                    <a class="btn btn-secondary btn-xs btn-warning w-100" onclick='updatePost({{ $post->id }}, "{{ $label }}")'>
+                                                        {{ $label }}
                                                     </a>
                                                     <a href="{{ url("admin/posts/{$post->id}/edit") }}" class="btn btn-secondary btn-xs btn-info w-100">
                                                         Edit
@@ -117,10 +124,10 @@
             })
         }
 
-        function updatePost(id) {
+        function updatePost(id, status) {
             swal({
                 title: "Are you sure?",
-                text: "You will update this",
+                text: `You will ${status} this`,
                 icon: 'warning',
                 buttons: [
                     "No, Cancel it!",

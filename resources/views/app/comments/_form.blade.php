@@ -18,22 +18,3 @@
         </div>
     </div>
 </div>
-
-@push('scripts')
-    <script>
-        $('#comment-form').submit(function(e) {
-            e.preventDefault();
-            var url = $(this).attr('action');
-            var method = $(this).attr('method');
-            var data = $(this).serialize();
-
-            $.ajax({
-                url: url,
-                type: method,
-                data: data
-            }).done(function(response) {
-                console.log(response);
-            })
-        });
-    </script>
-@endpush
