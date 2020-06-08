@@ -194,3 +194,213 @@
     background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
     background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
+
+/* No Post section */
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+
+#no-post-container {
+  position: relative;
+  margin: 50px auto 0;
+  overflow: hidden;
+  width: 700px;
+  height: 250px;
+  font-family: "Lato", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.teks-besar {
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  font-weight: 100;
+  letter-spacing: 3px;
+  padding-top: 10px;
+  color: #FCFCFC;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.red {
+  color: #e96075;
+}
+
+.alert {
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+.teks-pesan {
+  margin-top: -15px;
+  font-size: 0.8em;
+  font-weight: 100;
+  color: #5e5e5e;
+  letter-spacing: 1px;
+}
+
+#error-box {
+  position: absolute;
+  width: 35%;
+  height: 100%;
+  right: 30%;
+  background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px #cbcdd3;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #FCFCFC;
+  border-radius: 50%;
+  position: absolute;
+  top: 4%;
+  right: 6%;
+}
+.dot:hover {
+  background: #c9c9c9;
+}
+
+.two {
+  left: 6%;
+}
+
+.face {
+  position: absolute;
+  width: 22%;
+  height: 22%;
+  background: #FCFCFC;
+  border-radius: 50%;
+  border: 1px solid #777777;
+  top: 21%;
+  left: 37.5%;
+  z-index: 2;
+  animation: bounce 1s ease-in infinite;
+}
+
+.face2 {
+  position: absolute;
+  width: 22%;
+  height: 22%;
+  background: #FCFCFC;
+  border-radius: 50%;
+  border: 1px solid #777777;
+  top: 21%;
+  left: 37.5%;
+  z-index: 2;
+  animation: roll 3s ease-in-out infinite;
+}
+
+.eye {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #777777;
+  border-radius: 50%;
+  top: 40%;
+  left: 20%;
+}
+
+.right {
+  left: 68%;
+}
+
+.mouth {
+  position: absolute;
+  top: 43%;
+  left: 41%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.sad {
+  top: 49%;
+  border: 2px solid;
+  border-color: #777777 transparent transparent #777777;
+  transform: rotate(45deg);
+}
+
+.shadow {
+  position: absolute;
+  width: 21%;
+  height: 3%;
+  opacity: .5;
+  background: #777777;
+  left: 40%;
+  top: 43%;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.scale {
+  animation: scale 1s ease-in infinite;
+}
+
+.move {
+  animation: move 3s ease-in-out infinite;
+}
+
+.post-pesan {
+  font-size: 20px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  height: 40%;
+  top: 47%;
+}
+
+.button-box {
+  cursor: context-menu;
+  position: absolute;
+  background: #FCFCFC;
+  width: 75%;
+  height: 15%;
+  border-radius: 20px;
+  top: 76%;
+  left: 12.5%;
+  outline: 0;
+  border: none;
+  box-shadow: 2px 2px 10px rgba(119, 119, 119, 0.5);
+  transition: all .5s ease-in-out;
+}
+.button-box:hover {
+  background: #efefef;
+  transform: scale(1.05);
+  transition: all .3s ease-in-out;
+}
+
+@keyframes bounce {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes scale {
+  50% {
+    transform: scale(0.9);
+  }
+}
+@keyframes roll {
+  0% {
+    transform: rotate(0deg);
+    left: 25%;
+  }
+  50% {
+    left: 60%;
+    transform: rotate(168deg);
+  }
+  100% {
+    transform: rotate(0deg);
+    left: 25%;
+  }
+}
+@keyframes move {
+  0% {
+    left: 25%;
+  }
+  50% {
+    left: 60%;
+  }
+  100% {
+    left: 25%;
+  }
+}
